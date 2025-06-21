@@ -80,16 +80,6 @@ namespace SimuladorFacturacion
 
             lblAbajoDER.Location = new Point(this.ClientSize.Width - lblAbajoDER.Width - 10, (this.ClientSize.Height - 35) - lblAbajoDER.Height - 10);
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        void txtPuntosVenta_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         
         private void MainForm_Resize(object sender, EventArgs e)
         {
@@ -103,11 +93,6 @@ namespace SimuladorFacturacion
             centrarboton();
             centrarlabel();
             ubicarlabel();
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
