@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimuladorFacturacion.Core.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,30 @@ namespace SimuladorFacturacion.Models
 {
     public class FacturaModel
     {
-        public string RazonSocialEmisor { get; set; }
+        public EmisorModel Emisor { get; set; }
+        public ReceptorModel Receptor { get; set; }
+        public ComprobanteModel Comprobante { get; set; }
+        public List<RenglonModel> Renglones { get; set; }
+        public ImporteModel Totales { get; set; }
+
+        public FacturaModel()
+        {
+            Emisor = new EmisorModel();
+            Receptor = new ReceptorModel();
+            Comprobante = new ComprobanteModel();
+            Renglones = new List<RenglonModel>();
+            Totales = new ImporteModel();
+        }
+
+        /*public string RazonSocialEmisor { get; set; }
         public string CUITemisor { get; set; }
         public string DomicilioComercialEmisor { get; set; }
         public string CondicionIVA_Emisor { get; set; }
         public DateTime FechaInicioActividades { get; set; }
         public string CUITemisorConGuion { get; set; }
-        public string PuntoVentas { get; set; }
+        public string PuntoVenta { get; set; }
         public string TipoComprobante { get; set; }
-        public string ComprobanteNoLetra { get; set; }
+        public string NumeroComprobante { get; set; }
         public string LetraComprobante { get; set; }
         public DateTime FechaEmision { get; set; }
         public string ConceptosIncluir { get; set; }
@@ -44,5 +60,5 @@ namespace SimuladorFacturacion.Models
                 Renglones[i] = new RenglonModel();
             }
         }
+    }*/
     }
-}

@@ -8,8 +8,20 @@ namespace SimuladorFacturacion
 {
     public class RenglonModel
     {
-        //ATRIBUTOS
-        //Renglon 1
+        public string Codigo { get; set; }
+        public string ProductoServicio { get; set; }
+        public int Cantidad { get; set; }
+        public string UnidadMedida { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal PorcentajeBonificacion { get; set; }
+        public decimal AlicuotaIVA { get; set; }
+        public decimal GetImporteBonificacion() => (PrecioUnitario * Cantidad) * (PorcentajeBonificacion / 100);
+        public decimal GetSubtotal() => (PrecioUnitario * Cantidad) - GetImporteBonificacion();
+        public decimal GetImporteIVA() => GetSubtotal() * (AlicuotaIVA / 100);
+        public decimal GetSubtotalConIVA() => GetSubtotal() + GetImporteIVA();
+
+        public bool EsVacio => string.IsNullOrWhiteSpace(ProductoServicio);
+        /*
         public string Codigo { get; set; }
         public string ProductoServicio { get; set; }
         public string Cantidad { get; set; }
@@ -21,31 +33,6 @@ namespace SimuladorFacturacion
         public string AlicuotaIVA { get; set; }
         public string ImporteIVA { get; set; }
         public string SubtotalconIVA { get; set; }
-//
-//        //Renglon 2
-//        public string Codigo2 { get; set; }
-//        public string ProductoServicio2 { get; set; }
-//        public string Cantidad2 { get; set; }
-//        public string UnidadMedida2 { get; set; }
-//        public string PrecioUnitario2 { get; set; }
-//        public string PorcentajeBon2 { get; set; }
-//        public string ImporteBon2 { get; set; }
-//        public string Subtotal2 { get; set; }
-//        public string AlicuotaIVA2 { get; set; }
-//        public string ImporteIVA2 { get; set; }
-//        public string SubtotalconIVA2 { get; set; }
-//
-//        //Renglon 3
-//        public string Codigo3 { get; set; }
-//        public string ProductoServicio3 { get; set; }
-//        public string Cantidad3 { get; set; }
-//        public string UnidadMedida3 { get; set; }
-//        public string PrecioUnitario3 { get; set; }
-//        public string PorcentajeBon3 { get; set; }
-//        public string ImporteBon3 { get; set; }
-//        public string Subtotal3 { get; set; }
-//        public string AlicuotaIVA3 { get; set; }
-//        public string ImporteIVA3 { get; set; }
-//        public string SubtotalconIVA3 { get; set; }
+        */
     }
 }
