@@ -100,51 +100,56 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="ClassFacturacion.cs" />
-    <Compile Include="ClassRenglon.cs" />
-    <Compile Include="FormCargarDatosEmisor.cs">
+    <Compile Include="Core\Domain\Interfaces\Builders\IBuilder.cs" />
+    <Compile Include="Core\Domain\Interfaces\Builders\IFacturaBuilder.cs" />
+    <Compile Include="Core\Domain\Models\RenglonModel.cs" />
+    <Compile Include="Core\Domain\Interfaces\Repositories\IFacturaRepository.cs" />
+    <Compile Include="Core\Domain\Interfaces\Repositories\IRepository.cs" />
+    <Compile Include="Infraestructure\Repositories\FacturaRepository.cs" />
+    <Compile Include="Presentation\FormCargarDatosEmisor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCargarDatosEmisor.Designer.cs">
+    <Compile Include="Presentation\FormCargarDatosEmisor.Designer.cs">
       <DependentUpon>FormCargarDatosEmisor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormImpresion.cs">
+    <Compile Include="Presentation\FormImpresion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormImpresion.Designer.cs">
+    <Compile Include="Presentation\FormImpresion.Designer.cs">
       <DependentUpon>FormImpresion.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDatosEmision.cs">
+    <Compile Include="Presentation\FormDatosEmision.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDatosEmision.Designer.cs">
+    <Compile Include="Presentation\FormDatosEmision.Designer.cs">
       <DependentUpon>FormDatosEmision.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDatosOperacion.cs">
+    <Compile Include="Presentation\FormDatosOperacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDatosOperacion.Designer.cs">
+    <Compile Include="Presentation\FormDatosOperacion.Designer.cs">
       <DependentUpon>FormDatosOperacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDatosReceptor.cs">
+    <Compile Include="Presentation\FormDatosReceptor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDatosReceptor.Designer.cs">
+    <Compile Include="Presentation\FormDatosReceptor.Designer.cs">
       <DependentUpon>FormDatosReceptor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPuntosVenta.cs">
+    <Compile Include="Presentation\FormPuntosVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPuntosVenta.Designer.cs">
+    <Compile Include="Presentation\FormPuntosVenta.Designer.cs">
       <DependentUpon>FormPuntosVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\INavigationService.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Core\Domain\Interfaces\Services\INavigationService.cs" />
+    <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Presentation\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Domain\Models\FacturaModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -152,7 +157,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Core\Application\Services\FacturacionService.cs" />
+    <Compile Include="Infraestructure\Builders\FacturaBuilder.cs" />
+    <Compile Include="Infraestructure\Services\NavigationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -160,30 +167,31 @@
     <None Include="Properties\DataSources\ClassRenglon.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormCargarDatosEmisor.resx">
+    <EmbeddedResource Include="Presentation\FormCargarDatosEmisor.resx">
       <DependentUpon>FormCargarDatosEmisor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormImpresion.resx">
+    <EmbeddedResource Include="Presentation\FormImpresion.resx">
       <DependentUpon>FormImpresion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDatosEmision.resx">
+    <EmbeddedResource Include="Presentation\FormDatosEmision.resx">
       <DependentUpon>FormDatosEmision.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDatosOperacion.resx">
+    <EmbeddedResource Include="Presentation\FormDatosOperacion.resx">
       <DependentUpon>FormDatosOperacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDatosReceptor.resx">
+    <EmbeddedResource Include="Presentation\FormDatosReceptor.resx">
       <DependentUpon>FormDatosReceptor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPuntosVenta.resx">
+    <EmbeddedResource Include="Presentation\FormPuntosVenta.resx">
       <DependentUpon>FormPuntosVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Presentation\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.rdlc" />
   </ItemGroup>

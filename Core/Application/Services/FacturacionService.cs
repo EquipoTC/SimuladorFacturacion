@@ -17,7 +17,10 @@ namespace SimuladorFacturacion.Services
             this._builder = builder;
             this._repository = repository;
         }
-
+        public IFacturaBuilder GetBuilder()
+        {
+            return _builder;
+        }
         public IFacturaBuilder CreateNewFactura()
         {
             _builder.Reset();
