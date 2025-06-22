@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimuladorFacturacion
 {
-    public class ClassRenglon
+    public class RenglonModel
     {
         //ATRIBUTOS
         //Renglon 1
