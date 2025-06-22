@@ -1,4 +1,6 @@
-﻿using System;
+using SimuladorFacturacion.Interfaces;
+using SimuladorFacturacion.Services;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,17 +10,19 @@ namespace SimuladorFacturacion
 {
 	public partial class MainForm : Form
 	{
+        private readonly INavigationService _navigationService;
+        public MainForm(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+            InitializeComponent();
+            iniciarboton();
+            iniciarlabel();
+        }
 
 		private Button btn1;
         private Label TituloMain;
         private Label lblAbajoIZQ;
         private Label lblAbajoDER;
-        public MainForm()
-		{
-			InitializeComponent();
-            iniciarboton();
-            iniciarlabel();
-        }
 
         private void iniciarboton()
         {
@@ -40,7 +44,7 @@ namespace SimuladorFacturacion
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            App.MostrarCargarDatosEmisor();
+            _navigationService.NavigateTo<FormCargarDatosEmisor>();
         }
         
         private void iniciarlabel()
