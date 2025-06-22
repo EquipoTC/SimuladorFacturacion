@@ -8,9 +8,9 @@ namespace SimuladorFacturacion.Infraestructure.Repositories
 {
     public interface IRepository<T>
     {
-        Task<T> GetAllAsync();
-        Task<T> GetByIdAsync();
-        Task<T> SaveAsync();
+        Task<List<T>> GetAllAsync();
+        Task<T> GetByIdAsync(int id);
+        Task<bool> SaveAsync(T model);
         Task<bool> DeleteAsync(int id);
     }
 }

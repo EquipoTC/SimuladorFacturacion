@@ -1,75 +1,46 @@
 ﻿using SimuladorFacturacion.Interfaces;
+using SimuladorFacturacion.Interfaces.Services;
 using SimuladorFacturacion.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimuladorFacturacion.Services
 {
-    public class FacturacionService : IFacturacionService 
+    public class FacturacionService
     {
-        public FacturaModel Factura { get; private set; }
+        private readonly IFacturaRepository _repository;
+        private readonly IFacturaBuilder _builder;
 
-        public FacturacionService(FacturaModel factura)
+        public FacturacionService(IFacturaRepository repository, IFacturaBuilder builder)
         {
-            this.Factura = factura;
+            this._builder = builder;
+            this._repository = repository;
         }
 
-        public void UpdateEmisorData(string razonSocial, string cuit, string domicilio, string condicionIVA, DateTime fechaInicio, string cuitConGuion)
+        public IFacturaBuilder CreateNewFactura()
         {
-            Factura.RazonSocialEmisor = razonSocial;
-            Factura.CUITemisor = cuit;
-            Factura.DomicilioComercialEmisor = domicilio;
-            Factura.CondicionIVA_Emisor = condicionIVA;
-            Factura.FechaInicioActividades = fechaInicio;
-            Factura.CUITemisorConGuion = cuitConGuion;
+            _builder.Reset();
+            return _builder;
         }
 
-        public void UpdatePuntoVentaData(string puntoVenta, string tipoComprobante, string comprobanteNoLetra, string letraComprobante)
+        public async Task<bool> SaveCurrentFacturaAsync()
         {
-            Factura.PuntoVentas = puntoVenta;
-            Factura.TipoComprobante = tipoComprobante;
-            Factura.ComprobanteNoLetra = comprobanteNoLetra;
-            Factura.LetraComprobante = letraComprobante;
+            return await _repository.SaveAsync(_builder.Build());
         }
 
-        public void UpdateEmisionData(DateTime fechaEmision, string conceptos)
+        public FacturaModel GetCurrentFactura()
         {
-            Factura.FechaEmision = fechaEmision;
-            Factura.ConceptosIncluir = conceptos;
+            return _builder.GetProduct();
         }
 
-        public void UpdateReceptorData(string condicionIVA, string cuit, string razonSocial, string domicilio, string email, string condicionesVenta)
+        public decimal GetFacturaTotal()
         {
-            Factura.CondicionIVA = condicionIVA;
-            Factura.CUIT = cuit;
-            Factura.RazonSocial = razonSocial;
-            Factura.DomicilioComercial = domicilio;
-            Factura.Email = email;
-            Factura.CondicionesVenta = condicionesVenta;
+            return _repository.CalculateTotalAmount(_builder.GetProduct());
         }
-
-        public void UpdateOperacionData(string impOtrosTributos, string impNetoGravado, string iva27, string iva21, string iva10, string iva5, string iva2, string iva0, string impTotal)
+        public decimal GetFacturaIVA(decimal alicuota)
         {
-            Factura.ImpOtrosTributos = impOtrosTributos;
-            Factura.ImpNetoGravado = impNetoGravado;
-            Factura.IVA27 = iva27;
-            Factura.IVA21 = iva21;
-            Factura.IVA10 = iva10;
-            Factura.IVA5 = iva5;
-            Factura.IVA2 = iva2;
-            Factura.IVA0 = iva0;
-            Factura.ImpTotal = impTotal;
-        }
-
-        public void UpdateRenglon(int index, RenglonModel renglon)
-        {
-            if (index >= 0 && index < Factura.Renglones.Length)
-            {
-                Factura.Renglones[index] = renglon;
-            }
+            return _repository.CalculateIVAAmount(_builder.GetProduct(), alicuota);
         }
     }
 }

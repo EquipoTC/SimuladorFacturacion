@@ -35,8 +35,9 @@ namespace SimuladorFacturacion.Infraestructure.Repositories
             }
             return total;
         }
+
         // TODO: Implementar persistencia
-        public async Task<FacturaModel> SaveAsync(FacturaModel facturacion)
+        public async Task<bool> SaveAsync(FacturaModel facturacion)
         {
             throw new NotImplementedException();
         }
@@ -46,7 +47,7 @@ namespace SimuladorFacturacion.Infraestructure.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<FacturaModel>> GetAllAsync()
+        public async Task<List<FacturaModel>> GetAllAsync()
         {
             throw new NotImplementedException();
         }

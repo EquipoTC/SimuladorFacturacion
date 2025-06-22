@@ -19,6 +19,16 @@ namespace SimuladorFacturacion.Services
         {
             factura = new FacturaModel();
         }
+        public FacturaModel Build()
+        {
+            FacturaModel product = this.factura;
+            Reset();
+            return product;
+        }
+        public FacturaModel GetProduct()
+        {
+            return factura;
+        }
         public IFacturaBuilder AddEmisor(string razonSocial, string cuit)
         {
             factura.RazonSocialEmisor = razonSocial;
@@ -68,12 +78,6 @@ namespace SimuladorFacturacion.Services
                 }
             }
             return this;
-        }
-        public FacturaModel Build()
-        {
-            FacturaModel product = this.factura;
-            Reset();
-            return product;
         }
     }
 }
