@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimuladorFacturacion.Models
 {
-    public class FacturacionModel
+    public class FacturaModel
     {
         public string RazonSocialEmisor { get; set; }
         public string CUITemisor { get; set; }
@@ -36,7 +36,7 @@ namespace SimuladorFacturacion.Models
         public string IVA2 { get; set; }
         public string IVA0 { get; set; }
         public string ImpTotal { get; set; }
-        public FacturacionModel()
+        public FacturaModel()
         {
             Renglones = new RenglonModel[3];
             for (int i = 0; i < Renglones.Length; i++)

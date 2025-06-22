@@ -10,14 +10,14 @@ namespace SimuladorFacturacion.Services
 {
     public class FacturaBuilder : IFacturaBuilder
     {
-        private FacturacionModel factura;
+        private FacturaModel factura;
         public FacturaBuilder()
         {
             this.Reset();
         }
         public void Reset()
         {
-            factura = new FacturacionModel();
+            factura = new FacturaModel();
         }
         public IFacturaBuilder AddEmisor(string razonSocial, string cuit)
         {
@@ -69,9 +69,9 @@ namespace SimuladorFacturacion.Services
             }
             return this;
         }
-        public FacturacionModel Build()
+        public FacturaModel Build()
         {
-            FacturacionModel product = this.factura;
+            FacturaModel product = this.factura;
             Reset();
             return product;
         }

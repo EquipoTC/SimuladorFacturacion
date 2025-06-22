@@ -10,9 +10,9 @@ namespace SimuladorFacturacion.Services
 {
     public class FacturacionService : IFacturacionService 
     {
-        public FacturacionModel Factura { get; private set; }
+        public FacturaModel Factura { get; private set; }
 
-        public FacturacionService(FacturacionModel factura)
+        public FacturacionService(FacturaModel factura)
         {
             this.Factura = factura;
         }

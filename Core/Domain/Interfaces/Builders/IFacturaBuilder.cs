@@ -4,7 +4,7 @@ using System;
 
 namespace SimuladorFacturacion.Interfaces
 {
-    public interface IFacturaBuilder : IBuilder<FacturacionModel>
+    public interface IFacturaBuilder : IBuilder<FacturaModel>
     {
         IFacturaBuilder AddEmisor(string razonSocial, string cuit);
         IFacturaBuilder AddReceptor(string razonSocial, string cuit);

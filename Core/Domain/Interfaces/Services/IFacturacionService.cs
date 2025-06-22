@@ -9,8 +9,8 @@ namespace SimuladorFacturacion.Interfaces
 {
     public interface IFacturacionService
     {
-        FacturacionModel Factura { get; }
-        void UpdateFacturacion(FacturacionModel facturacion);
+        FacturaModel Factura { get; }
+        void UpdateFacturacion(FacturaModel facturacion);
         void ResetFacturacion();
     }
 }
