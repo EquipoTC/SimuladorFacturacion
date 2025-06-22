@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
@@ -6,7 +6,8 @@ namespace SimuladorFacturacion
 {
 	internal sealed class Program
 	{
-        ServiceProvider services = new ServiceCollection()
+		ServiceProvider servicesContainer = new ServiceCollection()
+			.AddSingleton<MainForm>()
 			.AddSingleton<FormPuntosVenta>()
 			.AddSingleton<FormDatosEmision>()
 			.AddSingleton<FormDatosOperacion>()
@@ -20,7 +21,7 @@ namespace SimuladorFacturacion
 		{
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			Application.Run();
 		}
 		
 	}
