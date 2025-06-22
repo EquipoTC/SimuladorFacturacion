@@ -10,6 +10,22 @@ public class FacturaBuilder : IFacturaBuilder
     private FacturaModel _factura;
 
     public FacturaBuilder() => Reset();
+    public FacturaModel Build()
+    {
+        var result = _factura;
+        Reset();
+        return result;
+    }
+
+    public void Reset()
+    {
+        _factura = new FacturaModel();
+    }
+
+    public FacturaModel GetProduct()
+    {
+        return _factura;
+    }
 
     public IFacturaBuilder AddEmisor(string razonSocial, string cuit)
     {
@@ -38,8 +54,6 @@ public class FacturaBuilder : IFacturaBuilder
         _factura.Emisor.FechaInicioActividades = fechaInicioActividades;
         return this;
     }
-
-    // Métodos para Receptor
     public IFacturaBuilder AddReceptor(string razonSocial, string cuit)
     {
         _factura.Receptor.RazonSocial = razonSocial;
@@ -150,21 +164,5 @@ public class FacturaBuilder : IFacturaBuilder
         _factura.Totales.NetoGravado = netoGravado;
         _factura.Totales.OtrosTributos = otrosTributos;
         return this;
-    }
-
-    public FacturaModel Build()
-    {
-        var result = _factura;
-        Reset();
-        return result;
-    }
-
-    public void Reset()
-    {
-        _factura = new FacturaModel
-        {
-            Renglones = new List<RenglonModel>(),
-            FechaEmision = DateTime.Now
-        };
     }
 }

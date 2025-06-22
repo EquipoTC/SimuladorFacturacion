@@ -19,7 +19,7 @@ namespace SimuladorFacturacion.Interfaces
         IFacturaBuilder AddComprobante(int puntoVenta, int numero, string tipo, string letra, DateTime fecha);
         IFacturaBuilder AddRenglon(string codigo, string descripcion, decimal cantidad, string unidadMedida, decimal precioUnitario);
         IFacturaBuilder AddRenglon(string codigo, string descripcion, decimal cantidad, string unidadMedida, decimal precioUnitario, decimal porcentajeBonificacion);
-        IFacturaBuilder AddRenglon(string codigo, string descripcion, decimal cantidad, string unidadMedida, decimal precioUnitario, decimal porcentajeBonificacion, string alicuotaIVA);
+        IFacturaBuilder AddRenglon(string codigo, string descripcion, decimal cantidad, string unidadMedida, decimal precioUnitario, decimal porcentajeBonificacion, decimal alicuotaIVA);
         IFacturaBuilder SetIVA27(decimal importe);
         IFacturaBuilder SetIVA21(decimal importe);
         IFacturaBuilder SetIVA0(decimal importe);

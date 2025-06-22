@@ -102,6 +102,11 @@
     <Compile Include="App.cs" />
     <Compile Include="Core\Domain\Interfaces\Builders\IBuilder.cs" />
     <Compile Include="Core\Domain\Interfaces\Builders\IFacturaBuilder.cs" />
+    <Compile Include="Core\Domain\Models\EmisorModel.cs" />
+    <Compile Include="Core\Domain\Models\ImporteModel.cs" />
+    <Compile Include="Core\Domain\Models\ComprobanteModel.cs" />
+    <Compile Include="Core\Domain\Models\PersonaModel.cs" />
+    <Compile Include="Core\Domain\Models\ReceptorModel.cs" />
     <Compile Include="Core\Domain\Models\RenglonModel.cs" />
     <Compile Include="Core\Domain\Interfaces\Repositories\IFacturaRepository.cs" />
     <Compile Include="Core\Domain\Interfaces\Repositories\IRepository.cs" />
