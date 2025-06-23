@@ -13,7 +13,7 @@ namespace SimuladorFacturacion.Models
         public ReceptorModel Receptor { get; set; }
         public ComprobanteModel Comprobante { get; set; }
         public List<RenglonModel> Renglones { get; set; }
-        public ImporteModel Totales { get; set; }
+        public ImporteModel Importes { get; set; }
 
         public FacturaModel()
         {
@@ -21,7 +21,7 @@ namespace SimuladorFacturacion.Models
             Receptor = new ReceptorModel();
             Comprobante = new ComprobanteModel();
             Renglones = new List<RenglonModel>();
-            Totales = new ImporteModel();
+            Importes = new ImporteModel();
         }
 
         /*public string RazonSocialEmisor { get; set; }

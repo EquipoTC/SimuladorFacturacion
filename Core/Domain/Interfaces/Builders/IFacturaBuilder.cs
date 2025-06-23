@@ -1,29 +1,20 @@
-﻿using SimuladorFacturacion.Models;
-using SimuladorFacturacion.Services;
-using System;
-
+﻿using SimuladorFacturacion.Core.Domain.Models;
+using SimuladorFacturacion.Models;
 namespace SimuladorFacturacion.Interfaces
 {
     public interface IFacturaBuilder : IBuilder<FacturaModel>
     {
-        IFacturaBuilder AddEmisor(string razonSocial, string cuit);
-        IFacturaBuilder AddEmisor(string razonSocial, string cuit, string domicilio);
-        IFacturaBuilder AddEmisor(string razonSocial, string cuit, string domicilio, string condicionIVA);
-        IFacturaBuilder AddEmisor(string razonSocial, string cuit, string domicilio, string condicionIVA, DateTime fechaInicioActividades);
-        IFacturaBuilder AddReceptor(string razonSocial, string cuit);
-        IFacturaBuilder AddReceptor(string razonSocial, string cuit, string domicilio);
-        IFacturaBuilder AddReceptor(string razonSocial, string cuit, string domicilio, string condicionIVA);
-        IFacturaBuilder AddReceptor(string razonSocial, string cuit, string domicilio, string condicionIVA, string email);
-        IFacturaBuilder AddComprobante(int puntoVenta, int numero, string tipo);
-        IFacturaBuilder AddComprobante(int puntoVenta, int numero, string tipo, DateTime fecha);
-        IFacturaBuilder AddComprobante(int puntoVenta, int numero, string tipo, string letra, DateTime fecha);
-        IFacturaBuilder AddRenglon(string codigo, string descripcion, decimal cantidad, string unidadMedida, decimal precioUnitario);
-        IFacturaBuilder AddRenglon(string codigo, string descripcion, decimal cantidad, string unidadMedida, decimal precioUnitario, decimal porcentajeBonificacion);
-        IFacturaBuilder AddRenglon(string codigo, string descripcion, decimal cantidad, string unidadMedida, decimal precioUnitario, decimal porcentajeBonificacion, decimal alicuotaIVA);
-        IFacturaBuilder SetIVA27(decimal importe);
-        IFacturaBuilder SetIVA21(decimal importe);
-        IFacturaBuilder SetIVA0(decimal importe);
-        IFacturaBuilder SetTotales(decimal netoGravado, decimal total);
-        IFacturaBuilder SetTotales(decimal netoGravado, decimal total, decimal otrosTributos);
+        IEmisorBuilder GetEmisor();
+        IReceptorBuilder GetReceptor();
+        IComprobanteBuilder GetComprobante();
+        IRenglonBuilder GetRenglon();
+        IImporteBuilder GetImporte();
+        IFacturaBuilder AddRenglon(RenglonModel renglon);
+        IFacturaBuilder DeleteRenglon(int index);
+        IFacturaBuilder CleanRenglones();
+        IFacturaBuilder SetEmisor(EmisorModel emisor);
+        IFacturaBuilder SetReceptor(ReceptorModel receptor);
+        IFacturaBuilder SetComprobante(ComprobanteModel comprobante);
+        IFacturaBuilder SetImporte(ImporteModel importes);
     }
 }
