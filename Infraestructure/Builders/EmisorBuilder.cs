@@ -4,12 +4,12 @@ using System;
 
 namespace SimuladorFacturacion.Builders
 {
-    public class EmisorBuilder : PersonaBuilder<EmisorModel>, IEmisorBuilder
+    public class EmisorBuilder : PersonaBuilder<EmisorModel, IEmisorBuilder>
     {
         public IEmisorBuilder SetFechaInicioActividades(DateTime fecha)
         {
             _persona.FechaInicioActividades = fecha;
-            return this;
+            return (IEmisorBuilder)this;
         }
 
         public IEmisorBuilder SetDatos(string razonSocial, string cuit, string domicilio, string condicionIVA, DateTime fechaInicioActividades)

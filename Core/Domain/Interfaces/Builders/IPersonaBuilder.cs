@@ -2,14 +2,14 @@
 
 namespace SimuladorFacturacion.Interfaces
 {
-    public interface IPersonaBuilder<T> : IBuilder<T> where T : PersonaModel
+    public interface IPersonaBuilder<T, TBuilder> : IBuilder<T> where T : PersonaModel
     {
-        IPersonaBuilder<T> SetRazonSocial(string razonSocial);
-        IPersonaBuilder<T> SetCUIT(string cuit);
-        IPersonaBuilder<T> SetDomicilio(string domicilio);
-        IPersonaBuilder<T> SetCondicionIVA(string condicionIVA);
-        IPersonaBuilder<T> SetDatos(string razonSocial, string cuit);
-        IPersonaBuilder<T> SetDatos(string razonSocial, string cuit, string domicilio);
-        IPersonaBuilder<T> SetDatos(string razonSocial, string cuit, string domicilio, string condicionIVA);
+        TBuilder SetRazonSocial(string razonSocial);
+        TBuilder SetCUIT(string cuit);
+        TBuilder SetDomicilio(string domicilio);
+        TBuilder SetCondicionIVA(string condicionIVA);
+        TBuilder SetDatos(string razonSocial, string cuit);
+        TBuilder SetDatos(string razonSocial, string cuit, string domicilio);
+        TBuilder SetDatos(string razonSocial, string cuit, string domicilio, string condicionIVA);
     }
 }

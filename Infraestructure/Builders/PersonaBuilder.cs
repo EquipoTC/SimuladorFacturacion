@@ -4,7 +4,9 @@ using System;
 
 namespace SimuladorFacturacion.Builders
 {
-    public abstract class PersonaBuilder<T> : IPersonaBuilder<T> where T : PersonaModel
+    public abstract class PersonaBuilder<T, TBuilder> : IPersonaBuilder<T, TBuilder> 
+        where T : PersonaModel
+        where TBuilder : IPersonaBuilder<T, TBuilder>
     {
         protected T _persona;
 
@@ -31,41 +33,41 @@ namespace SimuladorFacturacion.Builders
             return result;
         }
 
-        public virtual IPersonaBuilder<T> SetRazonSocial(string razonSocial)
+        public virtual TBuilder SetRazonSocial(string razonSocial)
         {
             _persona.RazonSocial = razonSocial;
-            return this;
+            return (TBuilder)(object)this;
         }
 
-        public virtual IPersonaBuilder<T> SetCUIT(string cuit)
+        public virtual TBuilder SetCUIT(string cuit)
         {
             _persona.CUIT = cuit;
-            return this;
+            return (TBuilder)(object)this;
         }
 
-        public virtual IPersonaBuilder<T> SetDomicilio(string domicilio)
+        public virtual TBuilder SetDomicilio(string domicilio)
         {
             _persona.DomicilioComercial = domicilio;
-            return this;
+            return (TBuilder)(object)this;
         }
 
-        public virtual IPersonaBuilder<T> SetCondicionIVA(string condicionIVA)
+        public virtual TBuilder SetCondicionIVA(string condicionIVA)
         {
             _persona.CondicionIVA = condicionIVA;
-            return this;
+            return (TBuilder)(object)this;
         }
 
-        public virtual IPersonaBuilder<T> SetDatos(string razonSocial, string cuit)
+        public virtual TBuilder SetDatos(string razonSocial, string cuit)
         {
             return SetRazonSocial(razonSocial).SetCUIT(cuit);
         }
 
-        public virtual IPersonaBuilder<T> SetDatos(string razonSocial, string cuit, string domicilio)
+        public virtual TBuilder SetDatos(string razonSocial, string cuit, string domicilio)
         {
             return SetDatos(razonSocial, cuit).SetDomicilio(domicilio);
         }
 
-        public virtual IPersonaBuilder<T> SetDatos(string razonSocial, string cuit, string domicilio, string condicionIVA)
+        public virtual TBuilder SetDatos(string razonSocial, string cuit, string domicilio, string condicionIVA)
         {
             return SetDatos(razonSocial, cuit, domicilio).SetCondicionIVA(condicionIVA);
         }
