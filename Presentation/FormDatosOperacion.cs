@@ -1,4 +1,4 @@
-﻿using SimuladorFacturacion.Core.Application.Services;
+using SimuladorFacturacion.Core.Application.Services;
 using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using System;
 using System.Drawing;
@@ -257,38 +257,49 @@ namespace SimuladorFacturacion
         }
 		private void cargarData(){
             var builder = _facturacionService.GetBuilder();
-            var renglon = builder.GetRenglon()
-                    .SetCodigo(txtCodigo1.Text)
-                    .SetProductoServicio(txtProductoServicio1.Text)
-                    .SetCantidad(decimal.Parse(txtCant1.Text))
-                    .SetUnidadMedida(cbxUmedida1.Text)
-                    .SetPrecioUnitario(decimal.Parse(txtPrecUnitario1.Text))
-                    .SetPorcentajeBonificacion(decimal.Parse(txtPorcentajeBon1.Text))
-                    .SetAlicuotaIVA(decimal.Parse(cbxAlicuotaIVA1.Text))
-                    .Build();
-            _facturacionService.GetBuilder().AddRenglon(renglon);
-
-            renglon = builder.GetRenglon()
-                    .SetCodigo(txtCodigo2.Text)
-                    .SetProductoServicio(txtProductoServicio2.Text)
-                    .SetCantidad(decimal.Parse(txtCant2.Text))
-                    .SetUnidadMedida(cbxUmedida2.Text)
-                    .SetPrecioUnitario(decimal.Parse(txtPrecUnitario2.Text))
-                    .SetPorcentajeBonificacion(decimal.Parse(txtPorcentajeBon2.Text))
-                    .SetAlicuotaIVA(decimal.Parse(cbxAlicuotaIVA2.Text))
-                    .Build();
-            builder.AddRenglon(renglon);
-
-            renglon = builder.GetRenglon()
-                   .SetCodigo(txtCodigo3.Text)
-                   .SetProductoServicio(txtProductoServicio3.Text)
-                   .SetCantidad(decimal.Parse(txtCant3.Text))
-                   .SetUnidadMedida(cbxUmedida3.Text)
-                   .SetPrecioUnitario(decimal.Parse(txtPrecUnitario3.Text))
-                   .SetPorcentajeBonificacion(decimal.Parse(txtPorcentajeBon3.Text))
-                   .SetAlicuotaIVA(decimal.Parse(cbxAlicuotaIVA3.Text))
-                   .Build();
-            builder.AddRenglon(renglon);
+            builder.CleanRenglones();
+            if (!string.IsNullOrWhiteSpace(txtCodigo1.Text))
+            {
+                builder.GetRenglon().Reset();
+                var renglon1 = builder.GetRenglon()
+                        .SetCodigo(txtCodigo1.Text)
+                        .SetProductoServicio(txtProductoServicio1.Text)
+                        .SetCantidad(string.IsNullOrWhiteSpace(txtCant1.Text) ? 0 : decimal.Parse(txtCant1.Text))
+                        .SetUnidadMedida(cbxUmedida1.Text)
+                        .SetPrecioUnitario(string.IsNullOrWhiteSpace(txtPrecUnitario1.Text) ? 0 : decimal.Parse(txtPrecUnitario1.Text))
+                        .SetPorcentajeBonificacion(string.IsNullOrWhiteSpace(txtPorcentajeBon1.Text) ? 0 : decimal.Parse(txtPorcentajeBon1.Text))
+                        .SetAlicuotaIVA(string.IsNullOrWhiteSpace(cbxAlicuotaIVA1.Text) ? 0 : decimal.Parse(cbxAlicuotaIVA1.Text))
+                        .Build();
+                builder.AddRenglon(renglon1);
+            }
+            if (!string.IsNullOrWhiteSpace(txtCodigo2.Text))
+            {
+                builder.GetRenglon().Reset();
+                var renglon2 = builder.GetRenglon()
+                        .SetCodigo(txtCodigo2.Text)
+                        .SetProductoServicio(txtProductoServicio2.Text)
+                        .SetCantidad(string.IsNullOrWhiteSpace(txtCant2.Text) ? 0 : decimal.Parse(txtCant2.Text))
+                        .SetUnidadMedida(cbxUmedida2.Text)
+                        .SetPrecioUnitario(string.IsNullOrWhiteSpace(txtPrecUnitario2.Text) ? 0 : decimal.Parse(txtPrecUnitario2.Text))
+                        .SetPorcentajeBonificacion(string.IsNullOrWhiteSpace(txtPorcentajeBon2.Text) ? 0 : decimal.Parse(txtPorcentajeBon2.Text))
+                        .SetAlicuotaIVA(string.IsNullOrWhiteSpace(cbxAlicuotaIVA2.Text) ? 0 : decimal.Parse(cbxAlicuotaIVA2.Text))
+                        .Build();
+                builder.AddRenglon(renglon2);
+            }
+            if (!string.IsNullOrWhiteSpace(txtCodigo3.Text))
+            {
+                builder.GetRenglon().Reset();
+                var renglon3 = builder.GetRenglon()
+                       .SetCodigo(txtCodigo3.Text)
+                       .SetProductoServicio(txtProductoServicio3.Text)
+                       .SetCantidad(string.IsNullOrWhiteSpace(txtCant3.Text) ? 0 : decimal.Parse(txtCant3.Text))
+                       .SetUnidadMedida(cbxUmedida3.Text)
+                       .SetPrecioUnitario(string.IsNullOrWhiteSpace(txtPrecUnitario3.Text) ? 0 : decimal.Parse(txtPrecUnitario3.Text))
+                       .SetPorcentajeBonificacion(string.IsNullOrWhiteSpace(txtPorcentajeBon3.Text) ? 0 : decimal.Parse(txtPorcentajeBon3.Text))
+                       .SetAlicuotaIVA(string.IsNullOrWhiteSpace(cbxAlicuotaIVA3.Text) ? 0 : decimal.Parse(cbxAlicuotaIVA3.Text))
+                       .Build();
+                builder.AddRenglon(renglon3);
+            }
         }
 		
 		private void calcularImportes(TextBox txtCantidad, TextBox txtPrecio, TextBox txtBonificacionPorcentaje, TextBox txtBonificacionImporte, TextBox txtSubTotal,ComboBox cbxIVAPorcentaje,TextBox txtIVA, TextBox txtTotal){
