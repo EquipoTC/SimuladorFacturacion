@@ -1,7 +1,7 @@
-﻿using SimuladorFacturacion.Core.Domain.Models;
+using SimuladorFacturacion.Core.Domain.Models;
 using System;
 
-namespace SimuladorFacturacion.Interfaces
+namespace SimuladorFacturacion.Core.Domain.Interfaces.Builders
 {
     public interface IEmisorBuilder : IPersonaBuilder<EmisorModel, IEmisorBuilder>
     {

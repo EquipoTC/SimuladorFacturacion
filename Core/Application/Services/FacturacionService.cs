@@ -1,11 +1,9 @@
-﻿using SimuladorFacturacion.Interfaces;
-using SimuladorFacturacion.Interfaces.Services;
-using SimuladorFacturacion.Models;
-using System;
-using System.Collections.Generic;
+using SimuladorFacturacion.Core.Domain.Interfaces.Builders;
+using SimuladorFacturacion.Core.Domain.Interfaces.Repositories;
+using SimuladorFacturacion.Core.Domain.Models;
 using System.Threading.Tasks;
 
-namespace SimuladorFacturacion.Services
+namespace SimuladorFacturacion.Core.Application.Services
 {
     public class FacturacionService
     {

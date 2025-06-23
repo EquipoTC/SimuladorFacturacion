@@ -1,24 +1,14 @@
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace SimuladorFacturacion
 {
-	/// <summary>
-	/// Description of FormDatosEmision.
-	/// </summary>
 	public partial class FormDatosEmision : Form
 	{
 		public FormDatosEmision()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
             this.KeyPreview = true;
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
         }
 		void Label1Click(object sender, EventArgs e)
 		{

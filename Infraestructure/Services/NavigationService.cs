@@ -1,13 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SimuladorFacturacion.Interfaces;
-using System;
+using Microsoft.Extensions.DependencyInjection;
+using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SimuladorFacturacion.Services
+namespace SimuladorFacturacion.Infraestructure.Services
 {
     public class NavigationService : INavigationService
     {

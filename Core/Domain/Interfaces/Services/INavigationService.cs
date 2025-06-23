@@ -1,7 +1,6 @@
-﻿using System;
 using System.Windows.Forms;
 
-namespace SimuladorFacturacion.Interfaces
+namespace SimuladorFacturacion.Core.Domain.Interfaces.Services
 {
     public interface INavigationService
     {

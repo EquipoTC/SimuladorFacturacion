@@ -1,6 +1,4 @@
-﻿using SimuladorFacturacion.Core.Domain.Models;
-
-namespace SimuladorFacturacion.Models
+﻿namespace SimuladorFacturacion.Core.Domain.Models
 {
     public class ReceptorModel : PersonaModel
     {

@@ -101,7 +101,13 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Core\Domain\Interfaces\Builders\IBuilder.cs" />
+    <Compile Include="Core\Domain\Interfaces\Builders\IComprobanteBuilder.cs" />
+    <Compile Include="Core\Domain\Interfaces\Builders\IEmisorBuilder.cs" />
     <Compile Include="Core\Domain\Interfaces\Builders\IFacturaBuilder.cs" />
+    <Compile Include="Core\Domain\Interfaces\Builders\IImporteBuilder.cs" />
+    <Compile Include="Core\Domain\Interfaces\Builders\IPersonaBuilder.cs" />
+    <Compile Include="Core\Domain\Interfaces\Builders\IReceptorBuilder.cs" />
+    <Compile Include="Core\Domain\Interfaces\Builders\IRenglonBuilder.cs" />
     <Compile Include="Core\Domain\Models\EmisorModel.cs" />
     <Compile Include="Core\Domain\Models\ImporteModel.cs" />
     <Compile Include="Core\Domain\Models\ComprobanteModel.cs" />
@@ -110,6 +116,12 @@
     <Compile Include="Core\Domain\Models\RenglonModel.cs" />
     <Compile Include="Core\Domain\Interfaces\Repositories\IFacturaRepository.cs" />
     <Compile Include="Core\Domain\Interfaces\Repositories\IRepository.cs" />
+    <Compile Include="Infraestructure\Builders\ComprobanteBuilder.cs" />
+    <Compile Include="Infraestructure\Builders\EmisorBuilder.cs" />
+    <Compile Include="Infraestructure\Builders\ImporteBuilder.cs" />
+    <Compile Include="Infraestructure\Builders\PersonaBuilder.cs" />
+    <Compile Include="Infraestructure\Builders\ReceptorBuilder.cs" />
+    <Compile Include="Infraestructure\Builders\RenglonBuilder.cs" />
     <Compile Include="Infraestructure\Repositories\FacturaRepository.cs" />
     <Compile Include="Presentation\FormCargarDatosEmisor.cs">
       <SubType>Form</SubType>

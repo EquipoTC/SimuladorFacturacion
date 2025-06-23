@@ -1,11 +1,4 @@
-﻿using SimuladorFacturacion.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimuladorFacturacion.Interfaces
+namespace SimuladorFacturacion.Core.Domain.Interfaces.Builders
 {
     public interface IBuilder<TOutput>
     {

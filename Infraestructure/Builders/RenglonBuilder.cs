@@ -1,4 +1,5 @@
-﻿using SimuladorFacturacion.Interfaces;
+using SimuladorFacturacion.Core.Domain.Interfaces.Builders;
+using SimuladorFacturacion.Core.Domain.Models;
 
 namespace SimuladorFacturacion.Infraestructure.Builders
 {

@@ -1,11 +1,6 @@
-﻿using SimuladorFacturacion.Core.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace SimuladorFacturacion.Models
+namespace SimuladorFacturacion.Core.Domain.Models
 {
     public class FacturaModel
     {

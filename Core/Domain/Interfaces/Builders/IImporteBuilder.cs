@@ -1,6 +1,6 @@
-﻿using SimuladorFacturacion.Core.Domain.Models;
+using SimuladorFacturacion.Core.Domain.Models;
 
-namespace SimuladorFacturacion.Interfaces
+namespace SimuladorFacturacion.Core.Domain.Interfaces.Builders
 {
     public interface IImporteBuilder : IBuilder<ImporteModel>
     {

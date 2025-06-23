@@ -1,6 +1,6 @@
-﻿using SimuladorFacturacion.Models;
+using SimuladorFacturacion.Core.Domain.Models;
 
-namespace SimuladorFacturacion.Interfaces
+namespace SimuladorFacturacion.Core.Domain.Interfaces.Builders
 {
     public interface IReceptorBuilder : IPersonaBuilder<ReceptorModel, IReceptorBuilder>
     {

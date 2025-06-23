@@ -1,5 +1,5 @@
-using SimuladorFacturacion.Interfaces;
-using SimuladorFacturacion.Services;
+using SimuladorFacturacion.Core.Application.Services;
+using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using System;
 using System.Windows.Forms;
 

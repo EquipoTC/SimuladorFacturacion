@@ -1,6 +1,6 @@
-﻿using SimuladorFacturacion.Infraestructure.Repositories;
-using SimuladorFacturacion.Models;
-namespace SimuladorFacturacion.Interfaces.Services
+﻿using SimuladorFacturacion.Core.Domain.Models;
+
+namespace SimuladorFacturacion.Core.Domain.Interfaces.Repositories
 {
     public interface IFacturaRepository : IRepository<FacturaModel>
     {

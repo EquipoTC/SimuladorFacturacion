@@ -1,9 +1,7 @@
-﻿using SimuladorFacturacion.Interfaces.Services;
-using SimuladorFacturacion.Models;
+using SimuladorFacturacion.Core.Domain.Interfaces.Repositories;
+using SimuladorFacturacion.Core.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimuladorFacturacion.Infraestructure.Repositories
@@ -17,8 +15,8 @@ namespace SimuladorFacturacion.Infraestructure.Repositories
             foreach (var ren in factura.Renglones)
             {
                 if (ren == null) continue;
-                decimal alicuota = decimal.Parse(ren.AlicuotaIVA) / 100;
-                total += decimal.Parse(ren.Cantidad) * decimal.Parse(ren.PrecioUnitario);
+                decimal alicuota = ren.AlicuotaIVA / 100;
+                total += ren.Cantidad * ren.PrecioUnitario;
             }
             return total;
         }
@@ -29,9 +27,9 @@ namespace SimuladorFacturacion.Infraestructure.Repositories
             decimal total = 0;
             foreach (var ren in factura.Renglones)
             {
-                if (ren == null || decimal.Parse(ren.AlicuotaIVA) != alicuota) continue;
+                if (ren == null || ren.AlicuotaIVA != alicuota) continue;
                 decimal alicuotaIVA = alicuota / 100;
-                total += decimal.Parse(ren.Cantidad) * decimal.Parse(ren.PrecioUnitario) * alicuota;
+                total += ren.Cantidad * ren.PrecioUnitario * alicuota;
             }
             return total;
         }

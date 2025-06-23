@@ -1,7 +1,7 @@
-﻿using SimuladorFacturacion.Interfaces;
-using SimuladorFacturacion.Models;
+using SimuladorFacturacion.Core.Domain.Interfaces.Builders;
+using SimuladorFacturacion.Core.Domain.Models;
 
-namespace SimuladorFacturacion.Builders
+namespace SimuladorFacturacion.Infraestructure.Builders
 {
     public class ReceptorBuilder : PersonaBuilder<ReceptorModel, IReceptorBuilder>
     {

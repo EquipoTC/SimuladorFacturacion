@@ -1,10 +1,6 @@
 ﻿using SimuladorFacturacion.Core.Domain.Models;
-using SimuladorFacturacion.Interfaces;
+using SimuladorFacturacion.Core.Domain.Interfaces.Builders;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimuladorFacturacion.Infraestructure.Builders
 {

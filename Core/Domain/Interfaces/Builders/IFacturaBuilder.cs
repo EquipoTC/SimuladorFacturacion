@@ -1,6 +1,5 @@
-﻿using SimuladorFacturacion.Core.Domain.Models;
-using SimuladorFacturacion.Models;
-namespace SimuladorFacturacion.Interfaces
+using SimuladorFacturacion.Core.Domain.Models;
+namespace SimuladorFacturacion.Core.Domain.Interfaces.Builders
 {
     public interface IFacturaBuilder : IBuilder<FacturaModel>
     {

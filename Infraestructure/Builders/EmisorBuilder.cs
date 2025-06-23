@@ -1,8 +1,8 @@
-﻿using SimuladorFacturacion.Core.Domain.Models;
-using SimuladorFacturacion.Interfaces;
+using SimuladorFacturacion.Core.Domain.Models;
+using SimuladorFacturacion.Core.Domain.Interfaces.Builders;
 using System;
 
-namespace SimuladorFacturacion.Builders
+namespace SimuladorFacturacion.Infraestructure.Builders
 {
     public class EmisorBuilder : PersonaBuilder<EmisorModel, IEmisorBuilder>
     {

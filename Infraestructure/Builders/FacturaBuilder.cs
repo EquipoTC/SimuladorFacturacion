@@ -1,93 +1,92 @@
-﻿using SimuladorFacturacion;
 using SimuladorFacturacion.Core.Domain.Models;
-using SimuladorFacturacion.Interfaces;
-using SimuladorFacturacion.Models;
-
-public class FacturaBuilder : IFacturaBuilder
+using SimuladorFacturacion.Core.Domain.Interfaces.Builders;
+namespace SimuladorFacturacion.Infraestructure.Builders
 {
-    private FacturaModel _factura;
-
-    private readonly IEmisorBuilder _emisorBuilder;
-    private readonly IReceptorBuilder _receptorBuilder;
-    private readonly IComprobanteBuilder _comprobanteBuilder;
-    private readonly IRenglonBuilder _renglonBuilder;
-    private readonly IImporteBuilder _importeBuilder;
-
-    public FacturaBuilder(
-        IEmisorBuilder emisorBuilder, IReceptorBuilder receptorBuilder, 
-        IRenglonBuilder renglonBuilder, IComprobanteBuilder comprobanteBuilder,
-        IImporteBuilder importeBuilder)
+    public class FacturaBuilder : IFacturaBuilder
     {
-        _emisorBuilder = emisorBuilder;
-        _receptorBuilder = receptorBuilder;
-        _comprobanteBuilder = comprobanteBuilder;
-        _renglonBuilder = renglonBuilder;
-        _importeBuilder = importeBuilder;
-        Reset();
-    }
-    public FacturaModel Build()
-    {
-        var result = _factura;
-        Reset();
-        return result;
-    }
+        private FacturaModel _factura;
 
-    public void Reset()
-    {
-        _factura = new FacturaModel();
-    }
+        private readonly IEmisorBuilder _emisorBuilder;
+        private readonly IReceptorBuilder _receptorBuilder;
+        private readonly IComprobanteBuilder _comprobanteBuilder;
+        private readonly IRenglonBuilder _renglonBuilder;
+        private readonly IImporteBuilder _importeBuilder;
 
-    public FacturaModel GetProduct() => _factura;
-
-    public IEmisorBuilder GetEmisor() => _emisorBuilder;
-    public IReceptorBuilder GetReceptor() => _receptorBuilder;
-    public IComprobanteBuilder GetComprobante() => _comprobanteBuilder;
-    public IRenglonBuilder GetRenglon() => _renglonBuilder;
-    public IImporteBuilder GetImporte() => _importeBuilder;
-
-
-    public IFacturaBuilder AddRenglon(RenglonModel renglon)
-    {
-        _factura.Renglones.Add(renglon);
-        return this;
-    }
-
-    public IFacturaBuilder DeleteRenglon(int index)
-    {
-        if (index >= 0 && index < _factura.Renglones.Count)
+        public FacturaBuilder(
+            IEmisorBuilder emisorBuilder, IReceptorBuilder receptorBuilder,
+            IRenglonBuilder renglonBuilder, IComprobanteBuilder comprobanteBuilder,
+            IImporteBuilder importeBuilder)
         {
-            _factura.Renglones.RemoveAt(index);
+            _emisorBuilder = emisorBuilder;
+            _receptorBuilder = receptorBuilder;
+            _comprobanteBuilder = comprobanteBuilder;
+            _renglonBuilder = renglonBuilder;
+            _importeBuilder = importeBuilder;
+            Reset();
         }
-        return this;
-    }
+        public FacturaModel Build()
+        {
+            var result = _factura;
+            Reset();
+            return result;
+        }
 
-    public IFacturaBuilder CleanRenglones()
-    {
-        _factura.Renglones.Clear();
-        return this;
-    }
+        public void Reset()
+        {
+            _factura = new FacturaModel();
+        }
 
-    public IFacturaBuilder SetEmisor(EmisorModel emisor)
-    {
-        _factura.Emisor = emisor;
-        return this;
-    }
+        public FacturaModel GetProduct() => _factura;
 
-    public IFacturaBuilder SetReceptor(ReceptorModel receptor)
-    {
-        _factura.Receptor = receptor;
-        return this;
-    }
+        public IEmisorBuilder GetEmisor() => _emisorBuilder;
+        public IReceptorBuilder GetReceptor() => _receptorBuilder;
+        public IComprobanteBuilder GetComprobante() => _comprobanteBuilder;
+        public IRenglonBuilder GetRenglon() => _renglonBuilder;
+        public IImporteBuilder GetImporte() => _importeBuilder;
 
-    public IFacturaBuilder SetComprobante(ComprobanteModel comprobante)
-    {
-        _factura.Comprobante = comprobante;
-        return this;
-    }
+        public IFacturaBuilder AddRenglon(RenglonModel renglon)
+        {
+            _factura.Renglones.Add(renglon);
+            return this;
+        }
 
-    public IFacturaBuilder SetImporte(ImporteModel importes)
-    {
-        _factura.Importes = importes;
-        return this;
+        public IFacturaBuilder DeleteRenglon(int index)
+        {
+            if (index >= 0 && index < _factura.Renglones.Count)
+            {
+                _factura.Renglones.RemoveAt(index);
+            }
+            return this;
+        }
+
+        public IFacturaBuilder CleanRenglones()
+        {
+            _factura.Renglones.Clear();
+            return this;
+        }
+
+        public IFacturaBuilder SetEmisor(EmisorModel emisor)
+        {
+            _factura.Emisor = emisor;
+            return this;
+        }
+
+        public IFacturaBuilder SetReceptor(ReceptorModel receptor)
+        {
+            _factura.Receptor = receptor;
+            return this;
+        }
+
+        public IFacturaBuilder SetComprobante(ComprobanteModel comprobante)
+        {
+            _factura.Comprobante = comprobante;
+            return this;
+        }
+
+        public IFacturaBuilder SetImporte(ImporteModel importes)
+        {
+            _factura.Importes = importes;
+            return this;
+        }
     }
 }

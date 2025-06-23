@@ -1,4 +1,4 @@
-﻿namespace SimuladorFacturacion
+﻿namespace SimuladorFacturacion.Core.Domain.Models
 {
     public class RenglonModel
     {

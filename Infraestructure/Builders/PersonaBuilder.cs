@@ -1,8 +1,7 @@
-﻿using SimuladorFacturacion.Core.Domain.Models;
-using SimuladorFacturacion.Interfaces;
-using System;
+using SimuladorFacturacion.Core.Domain.Models;
+using SimuladorFacturacion.Core.Domain.Interfaces.Builders;
 
-namespace SimuladorFacturacion.Builders
+namespace SimuladorFacturacion.Infraestructure.Builders
 {
     public abstract class PersonaBuilder<T, TBuilder> : IPersonaBuilder<T, TBuilder> 
         where T : PersonaModel
@@ -10,14 +9,11 @@ namespace SimuladorFacturacion.Builders
     {
         protected T _persona;
 
-        public PersonaBuilder()
-        {
-            Reset();
-        }
+        public PersonaBuilder() => Reset();
 
         public virtual void Reset()
         {
-            _persona = null;
+            _persona = new T();
             return;
         }
 
