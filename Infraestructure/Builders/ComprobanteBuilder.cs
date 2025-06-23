@@ -20,7 +20,7 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             _comprobante = new ComprobanteModel();
         }
 
-        public IComprobanteBuilder SetPuntoVenta(int puntoVenta)
+        public IComprobanteBuilder SetPuntoVenta(string puntoVenta)
         {
             _comprobante.PuntoVenta = puntoVenta;
             return this;
@@ -62,7 +62,7 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             return this;
         }
 
-        public IComprobanteBuilder SetDatos(int puntoVenta, int numero, string tipo)
+        public IComprobanteBuilder SetDatos(string puntoVenta, int numero, string tipo)
         {
             _comprobante.PuntoVenta = puntoVenta;
             _comprobante.NumeroComprobante = numero;
@@ -70,14 +70,14 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             return this;
         }
 
-        public IComprobanteBuilder SetDatos(int puntoVenta, int numero, string tipo, DateTime fecha)
+        public IComprobanteBuilder SetDatos(string puntoVenta, int numero, string tipo, DateTime fecha)
         {
             SetDatos(puntoVenta, numero, tipo);
             _comprobante.FechaEmision = fecha;
             return this;
         }
 
-        public IComprobanteBuilder SetDatos(int puntoVenta, int numero, string tipo, string letra, DateTime fecha)
+        public IComprobanteBuilder SetDatos(string puntoVenta, int numero, string tipo, string letra, DateTime fecha)
         {
             SetDatos(puntoVenta, numero, tipo, fecha);
             _comprobante.LetraComprobante = letra;

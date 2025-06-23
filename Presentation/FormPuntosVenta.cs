@@ -132,7 +132,7 @@ namespace SimuladorFacturacion
 			}
             _facturacionService.GetBuilder()
                 .GetComprobante()
-                    .SetPuntoVenta(int.Parse(txtPuntosVenta.Text))
+                    .SetPuntoVenta(txtPuntosVenta.Text)
                     .SetTipo(cbxTipoComprobante.Text)
                     .SetLetra(separarLetraComprobante())
                     .Build();
@@ -174,7 +174,7 @@ namespace SimuladorFacturacion
                 }
                 _facturacionService.GetBuilder()
                 .GetComprobante()
-                    .SetPuntoVenta(int.Parse(txtPuntosVenta.Text))
+                    .SetPuntoVenta(txtPuntosVenta.Text)
                     .SetTipo(cbxTipoComprobante.Text)
                     .SetLetra(separarLetraComprobante())
                     .Build();

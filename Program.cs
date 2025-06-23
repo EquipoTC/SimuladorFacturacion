@@ -7,6 +7,7 @@ using SimuladorFacturacion.Infraestructure.Builders;
 using SimuladorFacturacion.Infraestructure.Repositories;
 using SimuladorFacturacion.Infraestructure.Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimuladorFacturacion
@@ -15,7 +16,7 @@ namespace SimuladorFacturacion
 	{
 
 		[STAThread]
-		private static void Main(string[] args)
+		private static async Task Main(string[] args)
 		{
             ServiceProvider servicesContainer = new ServiceCollection()
             // Vistas
@@ -46,7 +47,7 @@ namespace SimuladorFacturacion
 
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run();
+			Application.Run(servicesContainer.GetService<MainForm>());
 		}
 		
 	}

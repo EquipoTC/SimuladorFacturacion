@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using SimuladorFacturacion.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -7,13 +8,14 @@ namespace SimuladorFacturacion.Infraestructure.Services
 {
     public class NavigationService : INavigationService
     {
-        public ServiceProvider _serviceProvider;
+        public IServiceProvider _serviceProvider;
         private Stack<Form> historyRecord;
         private Form currentForm;
 
-        public NavigationService(ServiceProvider serviceProvider)
+        public NavigationService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
+            historyRecord = new Stack<Form>();
         }
 
         public void NavigateTo<T>() where T : Form
