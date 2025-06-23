@@ -32,16 +32,16 @@ namespace SimuladorFacturacion.Core.Application.Services
 
         public FacturaModel GetCurrentFactura()
         {
-            return _builder.GetProduct();
+            return _builder.Build();
         }
 
         public decimal GetFacturaTotal()
         {
-            return _repository.CalculateTotalAmount(_builder.GetProduct());
+            return _repository.CalculateTotalAmount(_builder.Build());
         }
         public decimal GetFacturaIVA(decimal alicuota)
         {
-            return _repository.CalculateIVAAmount(_builder.GetProduct(), alicuota);
+            return _repository.CalculateIVAAmount(_builder.Build(), alicuota);
         }
     }
 }

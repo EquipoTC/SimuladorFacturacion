@@ -10,6 +10,8 @@ namespace SimuladorFacturacion.Core.Domain.Interfaces.Builders
         IComprobanteBuilder SetTipo(string tipo);
         IComprobanteBuilder SetLetra(string letra);
         IComprobanteBuilder SetFechaEmision(DateTime fecha);
+        IComprobanteBuilder SetConceptos(string conceptos);
+        IComprobanteBuilder SetCondicionesVenta(string condiciones);
         IComprobanteBuilder SetDatos(int puntoVenta, int numero, string tipo);
         IComprobanteBuilder SetDatos(int puntoVenta, int numero, string tipo, DateTime fecha);
         IComprobanteBuilder SetDatos(int puntoVenta, int numero, string tipo, string letra, DateTime fecha);

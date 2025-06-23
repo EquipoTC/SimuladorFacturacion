@@ -11,19 +11,12 @@ namespace SimuladorFacturacion.Infraestructure.Builders
 
         public RenglonModel Build()
         {
-            var result = _renglon;
-            Reset();
-            return result;
+            return _renglon;
         }
 
         public void Reset()
         {
             _renglon = new RenglonModel();
-        }
-
-        public RenglonModel GetProduct()
-        {
-            return _renglon;
         }
 
         public IRenglonBuilder SetCodigo(string codigo)

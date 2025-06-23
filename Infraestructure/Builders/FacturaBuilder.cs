@@ -26,17 +26,13 @@ namespace SimuladorFacturacion.Infraestructure.Builders
         }
         public FacturaModel Build()
         {
-            var result = _factura;
-            Reset();
-            return result;
+            return _factura;
         }
 
         public void Reset()
         {
             _factura = new FacturaModel();
         }
-
-        public FacturaModel GetProduct() => _factura;
 
         public IEmisorBuilder GetEmisor() => _emisorBuilder;
         public IReceptorBuilder GetReceptor() => _receptorBuilder;

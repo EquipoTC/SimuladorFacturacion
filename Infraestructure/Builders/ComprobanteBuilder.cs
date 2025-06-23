@@ -12,13 +12,6 @@ namespace SimuladorFacturacion.Infraestructure.Builders
 
         public ComprobanteModel Build()
         {
-            var result = _comprobante;
-            Reset();
-            return result;
-        }
-
-        public ComprobanteModel GetProduct()
-        {
             return _comprobante;
         }
 
@@ -54,6 +47,18 @@ namespace SimuladorFacturacion.Infraestructure.Builders
         public IComprobanteBuilder SetFechaEmision(DateTime fecha)
         {
             _comprobante.FechaEmision = fecha;
+            return this;
+        }
+
+        public IComprobanteBuilder SetConceptos(string conceptos)
+        {
+            _comprobante.ConceptosIncluir = conceptos;
+            return this;
+        }
+
+        public IComprobanteBuilder SetCondicionesVenta(string condiciones)
+        {
+            _comprobante.CondicionesVenta = condiciones;
             return this;
         }
 

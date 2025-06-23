@@ -11,13 +11,6 @@ namespace SimuladorFacturacion.Infraestructure.Builders
 
         public ImporteModel Build()
         {
-            var result = _importes;
-            Reset();
-            return result;
-        }
-
-        public ImporteModel GetProduct()
-        {
             return _importes;
         }
 
@@ -41,6 +34,23 @@ namespace SimuladorFacturacion.Infraestructure.Builders
         public IImporteBuilder SetIVA10(decimal iva10)
         {
             _importes.IVA10 = iva10;
+            return this;
+        }
+
+        public IImporteBuilder SetIVA5(decimal iva5)
+        {
+            _importes.IVA5 = iva5;
+            return this;
+        }
+        public IImporteBuilder SetIVA2(decimal iva2)
+        {
+            _importes.IVA2 = iva2;
+            return this;
+        }
+
+        public IImporteBuilder SetIVA0(decimal iva0)
+        {
+            _importes.IVA0 = iva0;
             return this;
         }
 

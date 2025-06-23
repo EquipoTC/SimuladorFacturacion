@@ -17,16 +17,9 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             return;
         }
 
-        public virtual T GetProduct()
-        {
-            return _persona;
-        }
-
         public virtual T Build()
         {
-            var result = _persona;
-            Reset();
-            return result;
+            return _persona;
         }
 
         public virtual TBuilder SetRazonSocial(string razonSocial)
