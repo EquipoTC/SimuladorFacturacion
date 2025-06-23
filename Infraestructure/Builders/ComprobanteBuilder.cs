@@ -15,6 +15,11 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             return _comprobante;
         }
 
+        public ComprobanteModel GetProduct()
+        {
+            return _comprobante;
+        }
+
         public void Reset()
         {
             _comprobante = new ComprobanteModel();

@@ -24,12 +24,18 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             _importeBuilder = importeBuilder;
             Reset();
         }
+
         public FacturaModel Build()
         {
             _factura.Receptor = _receptorBuilder.Build();
             _factura.Emisor = _emisorBuilder.Build();
             _factura.Comprobante = _comprobanteBuilder.Build();
             _factura.Importes = _importeBuilder.Build();
+            return _factura;
+        }
+
+        public FacturaModel GetProduct()
+        {
             return _factura;
         }
 

@@ -14,6 +14,11 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             return _renglon;
         }
 
+        public RenglonModel GetProduct()
+        {
+            return _renglon;
+        }
+
         public void Reset()
         {
             _renglon = new RenglonModel();

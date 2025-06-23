@@ -22,6 +22,11 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             return _persona;
         }
 
+        public virtual T GetProduct()
+        {
+            return _persona;
+        }
+
         public virtual TBuilder SetRazonSocial(string razonSocial)
         {
             _persona.RazonSocial = razonSocial;

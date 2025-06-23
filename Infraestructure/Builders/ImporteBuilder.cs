@@ -13,6 +13,10 @@ namespace SimuladorFacturacion.Infraestructure.Builders
         {
             return _importes;
         }
+        public ImporteModel GetProduct()
+        {
+            return _importes;
+        }
 
         public void Reset()
         {

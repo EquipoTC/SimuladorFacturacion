@@ -30,7 +30,12 @@ namespace SimuladorFacturacion.Core.Application.Services
             return await _repository.SaveAsync(_builder.Build());
         }
 
-        public FacturaModel GetCurrentFactura()
+        public FacturaModel GetFactura()
+        {
+            return _builder.GetProduct();
+        }
+
+        public FacturaModel FinishFactura()
         {
             return _builder.Build();
         }
