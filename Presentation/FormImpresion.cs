@@ -1,4 +1,4 @@
-﻿using Microsoft.Reporting.WinForms;
+using Microsoft.Reporting.WinForms;
 using SimuladorFacturacion.Core.Application.Services;
 using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using System;
@@ -21,7 +21,7 @@ namespace SimuladorFacturacion
 
         private void FormImpresion_Load(object sender, EventArgs e)
         {
-
+            iniciar();
         }
 
         public void iniciar()
