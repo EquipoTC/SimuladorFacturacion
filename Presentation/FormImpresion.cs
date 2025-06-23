@@ -26,7 +26,7 @@ namespace SimuladorFacturacion
 
         public void iniciar()
         {
-            var factura = _facturacionService.GetCurrentFactura();
+            var factura = _facturacionService.FinishFactura();
             ReportDataSource rds = new ReportDataSource("DataSet1", factura.Renglones);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "SimuladorFacturacion.Report1.rdlc";
             this.reportViewer.LocalReport.DataSources.Clear();
