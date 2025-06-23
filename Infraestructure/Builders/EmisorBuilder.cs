@@ -9,7 +9,7 @@ namespace SimuladorFacturacion.Infraestructure.Builders
         public IEmisorBuilder SetFechaInicioActividades(DateTime fecha)
         {
             _persona.FechaInicioActividades = fecha;
-            return (IEmisorBuilder)this;
+            return this;
         }
 
         public IEmisorBuilder SetDatos(string razonSocial, string cuit, string domicilio, string condicionIVA, DateTime fechaInicioActividades)

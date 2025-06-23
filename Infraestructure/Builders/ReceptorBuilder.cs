@@ -8,7 +8,7 @@ namespace SimuladorFacturacion.Infraestructure.Builders
         public IReceptorBuilder SetEmail(string email)
         {
             _persona.Email = email;
-            return (IReceptorBuilder)this;
+            return this;
         }
 
         public IReceptorBuilder SetDatos(string razonSocial, string cuit, string domicilio, string condicionIVA, string email)
