@@ -1,3 +1,5 @@
+using SimuladorFacturacion.Core.Application.Services;
+using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -7,8 +9,12 @@ namespace SimuladorFacturacion
 {
 	public partial class FormPuntosVenta : Form
 	{
-		public FormPuntosVenta()
+        private FacturacionService _facturacionService;
+        private readonly INavigationService _navigationService;
+        public FormPuntosVenta(FacturacionService facturacionService, INavigationService navigationService)
 		{
+            _facturacionService = facturacionService;
+            _navigationService = navigationService;
             InitializeComponent();
             this.KeyPreview = true;
         }
@@ -124,13 +130,15 @@ namespace SimuladorFacturacion
 			if (!validaciones()) {
 				return;
 			}
-
-            App.DataFacturacion.PuntoVentas = txtPuntosVenta.Text;
-			App.DataFacturacion.TipoComprobante = cbxTipoComprobante.Text;
-            App.DataFacturacion.ComprobanteNoLetra = separarTipoComprobante();
-            App.DataFacturacion.LetraComprobante = separarLetraComprobante();
-
-            App.MostrarDatosEmision();
+            _facturacionService.GetBuilder()
+                .GetComprobante()
+                    .SetPuntoVenta(int.Parse(txtPuntosVenta.Text))
+                    .SetTipo(cbxTipoComprobante.Text)
+                    .SetLetra(separarLetraComprobante())
+                    .Build();
+            // App.DataFacturacion.ComprobanteNoLetra = separarTipoComprobante();
+            _navigationService.NavigateTo<FormDatosEmision>();
+            //App.MostrarDatosEmision();
 			Hide();
 		}
 
@@ -142,7 +150,8 @@ namespace SimuladorFacturacion
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            App.MostrarCargarDatosEmisor();
+            _navigationService.NavigateBack();
+            //App.MostrarCargarDatosEmisor();
             Hide();
         }
 
@@ -163,13 +172,19 @@ namespace SimuladorFacturacion
                 {
                     return;
                 }
-
-                App.DataFacturacion.PuntoVentas = txtPuntosVenta.Text;
+                _facturacionService.GetBuilder()
+                .GetComprobante()
+                    .SetPuntoVenta(int.Parse(txtPuntosVenta.Text))
+                    .SetTipo(cbxTipoComprobante.Text)
+                    .SetLetra(separarLetraComprobante())
+                    .Build();
+                /*App.DataFacturacion.PuntoVentas = txtPuntosVenta.Text;
                 App.DataFacturacion.TipoComprobante = cbxTipoComprobante.Text;
                 App.DataFacturacion.ComprobanteNoLetra = separarTipoComprobante();
                 App.DataFacturacion.LetraComprobante = separarLetraComprobante();
 
-                App.MostrarDatosEmision();
+                App.MostrarDatosEmision();*/
+                _navigationService.NavigateTo<FormDatosEmision>();
                 Hide();
             }
         }

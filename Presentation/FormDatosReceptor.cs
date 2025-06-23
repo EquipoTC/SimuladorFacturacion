@@ -1,3 +1,5 @@
+using SimuladorFacturacion.Core.Application.Services;
+using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using System;
 using System.Drawing;
 using System.Text;
@@ -5,22 +7,17 @@ using System.Windows.Forms;
 
 namespace SimuladorFacturacion
 {
-	/// <summary>
-	/// Description of FormDatosReceptor.
-	/// </summary>
 	public partial class FormDatosReceptor : Form
 	{
-		public FormDatosReceptor()
+        private readonly FacturacionService _facturacionService;
+        private readonly INavigationService _navigationService;
+        public FormDatosReceptor(FacturacionService facturacionService, INavigationService navigationService)
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
+            _facturacionService = facturacionService;
+            _navigationService = navigationService;
+            InitializeComponent();
             txtCuit.MaxLength = 11;
             this.KeyPreview = true;
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
         }
 		void FormDatosReceptorLoad(object sender, EventArgs e)
 		{
@@ -32,7 +29,7 @@ namespace SimuladorFacturacion
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-			App.MostrarDatosEmision();
+            _navigationService.NavigateBack();
 			Hide();
         }
         bool validaciones()
@@ -73,11 +70,14 @@ namespace SimuladorFacturacion
             {
                 return;
             }
-            App.DataFacturacion.CondicionIVA = cbxCondicionIVA.Text;
-            App.DataFacturacion.CUIT = txtCuit.Text;
-            App.DataFacturacion.RazonSocial = txtRazonSocial.Text;
-            App.DataFacturacion.DomicilioComercial = txtDomicilioComercial.Text;
-            App.DataFacturacion.Email = txtEmail.Text;
+            _facturacionService.GetBuilder()
+                .GetReceptor()
+                    .SetRazonSocial(txtRazonSocial.Text)
+                    .SetCUIT(txtCuit.Text)
+                    .SetDomicilio(txtDomicilioComercial.Text)
+                    .SetCondicionIVA(cbxCondicionIVA.Text)
+                    .SetEmail(txtEmail.Text)
+                    .Build();
 
             string opcionesSeleccionadas = "";
 
@@ -90,12 +90,9 @@ namespace SimuladorFacturacion
             {
                 opcionesSeleccionadas = opcionesSeleccionadas.Substring(0, opcionesSeleccionadas.Length - 2);
             }
-
-            string condicionesVenta = opcionesSeleccionadas.ToString();
-
-            App.DataFacturacion.CondicionesVenta = condicionesVenta;
-
-            App.MostrarDatosOperacion();
+            _facturacionService.GetBuilder().GetComprobante()
+                .SetCondicionesVenta(opcionesSeleccionadas.ToString());
+            _navigationService.NavigateTo<FormDatosOperacion>();
 			Hide();
         }
 
@@ -129,11 +126,14 @@ namespace SimuladorFacturacion
                 {
                     return;
                 }
-                App.DataFacturacion.CondicionIVA = cbxCondicionIVA.Text;
-                App.DataFacturacion.CUIT = txtCuit.Text;
-                App.DataFacturacion.RazonSocial = txtRazonSocial.Text;
-                App.DataFacturacion.DomicilioComercial = txtDomicilioComercial.Text;
-                App.DataFacturacion.Email = txtEmail.Text;
+                _facturacionService.GetBuilder()
+               .GetReceptor()
+                   .SetRazonSocial(txtRazonSocial.Text)
+                   .SetCUIT(txtCuit.Text)
+                   .SetDomicilio(txtDomicilioComercial.Text)
+                   .SetCondicionIVA(cbxCondicionIVA.Text)
+                   .SetEmail(txtEmail.Text)
+                   .Build();
 
                 string opcionesSeleccionadas = "";
 
@@ -146,12 +146,9 @@ namespace SimuladorFacturacion
                 {
                     opcionesSeleccionadas = opcionesSeleccionadas.Substring(0, opcionesSeleccionadas.Length - 2);
                 }
-
-                string condicionesVenta = opcionesSeleccionadas.ToString();
-
-                App.DataFacturacion.CondicionesVenta = condicionesVenta;
-
-                App.MostrarDatosOperacion();
+                _facturacionService.GetBuilder().GetComprobante()
+                .SetCondicionesVenta(opcionesSeleccionadas.ToString());
+                _navigationService.NavigateTo<FormDatosOperacion>();
                 Hide();
             }
         }

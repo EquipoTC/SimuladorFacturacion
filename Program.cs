@@ -13,7 +13,11 @@ namespace SimuladorFacturacion
 {
 	internal sealed class Program
 	{
-		ServiceProvider servicesContainer = new ServiceCollection()
+
+		[STAThread]
+		private static void Main(string[] args)
+		{
+            ServiceProvider servicesContainer = new ServiceCollection()
             // Vistas
             .AddSingleton<MainForm>()
             .AddSingleton<FormPuntosVenta>()
@@ -38,11 +42,8 @@ namespace SimuladorFacturacion
             .AddSingleton<FacturacionService>()
             .AddSingleton<INavigationService, NavigationService>()
 
-			.BuildServiceProvider();
+            .BuildServiceProvider();
 
-		[STAThread]
-		private static void Main(string[] args)
-		{
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run();

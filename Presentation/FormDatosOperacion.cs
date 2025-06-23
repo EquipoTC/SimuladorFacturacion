@@ -1,29 +1,21 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Alumno
- * Date: 6/5/2024
- * Time: 20:53
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
+﻿using SimuladorFacturacion.Core.Application.Services;
+using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace SimuladorFacturacion
 {
-	/// <summary>
-	/// Description of FormDatosOperacion.
-	/// </summary>
 	public partial class FormDatosOperacion : Form
 	{
+        private readonly FacturacionService _facturacionService;
+        private readonly INavigationService _navigationService;
         double totalTotalizadores = 0;
-        public FormDatosOperacion()
+        public FormDatosOperacion(FacturacionService facturacionService, INavigationService navigationService)
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
+            _facturacionService = facturacionService;
+            _navigationService = navigationService;
+            InitializeComponent();
             txtImporteIVA1.Text = "0";
             txtImporteIVA2.Text = "0";
             txtImporteIVA3.Text = "0";
@@ -34,9 +26,6 @@ namespace SimuladorFacturacion
             cbxAlicuotaIVA2.SelectedIndex = 2;
             cbxAlicuotaIVA3.SelectedIndex = 2;
             txtImpOtrosTributos.Text = "0";
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
         }
 		void FormDatosOperacionLoad(object sender, EventArgs e)
 		{
@@ -209,19 +198,21 @@ namespace SimuladorFacturacion
 			{
 				return;
 			}
-			
 			cargarData();
-            App.DataFacturacion.ImpOtrosTributos = txtImpOtrosTributos.Text;
-            App.DataFacturacion.ImpNetoGravado = txtImpNetoGravado.Text;
-            App.DataFacturacion.IVA27 = txtIVA27.Text;
-            App.DataFacturacion.IVA21 = txtIVA21.Text;
-            App.DataFacturacion.IVA10 = txtIVA10.Text;
-            App.DataFacturacion.IVA5 = txtIVA5.Text;
-            App.DataFacturacion.IVA2 = txtIVA2.Text;
-            App.DataFacturacion.IVA0 = txtIVA0.Text;
-            App.DataFacturacion.ImpTotal = txtImpTotal.Text;
-
-            App.MostrarFormImpresion();
+            _facturacionService.GetBuilder()
+                .GetImporte()
+                    .SetOtrosTributos(decimal.Parse(txtImpOtrosTributos.Text))
+                    .SetNetoGravado(decimal.Parse(txtImpNetoGravado.Text))
+                    .SetIVA27(decimal.Parse(txtIVA27.Text))
+                    .SetIVA21(decimal.Parse(txtIVA21.Text))
+                    .SetIVA10(decimal.Parse(txtIVA10.Text))
+                    .SetIVA5(decimal.Parse(txtIVA5.Text))
+                    .SetIVA2(decimal.Parse(txtIVA2.Text))
+                    .SetIVA0(decimal.Parse(txtIVA0.Text))
+                    .SetOtrosTributos(decimal.Parse(txtImpOtrosTributos.Text))
+                    .SetNetoGravado(decimal.Parse(txtImpNetoGravado.Text))
+                    .Build();
+            _navigationService.NavigateTo<FormImpresion>();
             Hide();
 
 
@@ -265,43 +256,39 @@ namespace SimuladorFacturacion
 
         }
 		private void cargarData(){
-			
-			//renglon 1
-			App.DataFacturacion.Renglones[0].Codigo = txtCodigo1.Text;
-			App.DataFacturacion.Renglones[0].ProductoServicio = txtProductoServicio1.Text;
-			App.DataFacturacion.Renglones[0].Cantidad = txtCant1.Text;
-			App.DataFacturacion.Renglones[0].UnidadMedida = cbxUmedida1.Text;
-			App.DataFacturacion.Renglones[0].PrecioUnitario = txtPrecUnitario1.Text;
-			App.DataFacturacion.Renglones[0].PorcentajeBon = txtPorcentajeBon1.Text;
-			App.DataFacturacion.Renglones[0].ImporteBon = txtImporteBon1.Text;
-			App.DataFacturacion.Renglones[0].Subtotal = txtSubtotal1.Text;
-			App.DataFacturacion.Renglones[0].AlicuotaIVA = cbxAlicuotaIVA1.Text;
-			App.DataFacturacion.Renglones[0].ImporteIVA = txtImporteIVA1.Text;
-			App.DataFacturacion.Renglones[0].SubtotalconIVA = txtSubtotalIVA1.Text;
-            //renglon 2
-            App.DataFacturacion.Renglones[1].Codigo = txtCodigo2.Text;
-            App.DataFacturacion.Renglones[1].ProductoServicio = txtProductoServicio2.Text;
-            App.DataFacturacion.Renglones[1].Cantidad = txtCant2.Text;
-            App.DataFacturacion.Renglones[1].UnidadMedida = cbxUmedida2.Text;
-            App.DataFacturacion.Renglones[1].PrecioUnitario = txtPrecUnitario2.Text;
-            App.DataFacturacion.Renglones[1].PorcentajeBon = txtPorcentajeBon2.Text;
-            App.DataFacturacion.Renglones[1].ImporteBon = txtImporteBon2.Text;
-            App.DataFacturacion.Renglones[1].Subtotal = txtSubtotal2.Text;
-            App.DataFacturacion.Renglones[1].AlicuotaIVA = cbxAlicuotaIVA2.Text;
-            App.DataFacturacion.Renglones[1].ImporteIVA = txtImporteIVA2.Text;
-            App.DataFacturacion.Renglones[1].SubtotalconIVA = txtSubtotalIVA2.Text;
-            //renglon 3
-            App.DataFacturacion.Renglones[2].Codigo = txtCodigo3.Text;
-            App.DataFacturacion.Renglones[2].ProductoServicio = txtProductoServicio3.Text;
-            App.DataFacturacion.Renglones[2].Cantidad = txtCant3.Text;
-            App.DataFacturacion.Renglones[2].UnidadMedida = cbxUmedida3.Text;
-            App.DataFacturacion.Renglones[2].PrecioUnitario = txtPrecUnitario3.Text;
-            App.DataFacturacion.Renglones[2].PorcentajeBon = txtPorcentajeBon3.Text;
-            App.DataFacturacion.Renglones[2].ImporteBon = txtImporteBon3.Text;
-            App.DataFacturacion.Renglones[2].Subtotal = txtSubtotal3.Text;
-            App.DataFacturacion.Renglones[2].AlicuotaIVA = cbxAlicuotaIVA3.Text;
-            App.DataFacturacion.Renglones[2].ImporteIVA = txtImporteIVA3.Text;
-            App.DataFacturacion.Renglones[2].SubtotalconIVA = txtSubtotalIVA3.Text;
+            var builder = _facturacionService.GetBuilder();
+            var renglon = builder.GetRenglon()
+                    .SetCodigo(txtCodigo1.Text)
+                    .SetProductoServicio(txtProductoServicio1.Text)
+                    .SetCantidad(decimal.Parse(txtCant1.Text))
+                    .SetUnidadMedida(cbxUmedida1.Text)
+                    .SetPrecioUnitario(decimal.Parse(txtPrecUnitario1.Text))
+                    .SetPorcentajeBonificacion(decimal.Parse(txtPorcentajeBon1.Text))
+                    .SetAlicuotaIVA(decimal.Parse(cbxAlicuotaIVA1.Text))
+                    .Build();
+            _facturacionService.GetBuilder().AddRenglon(renglon);
+
+            renglon = builder.GetRenglon()
+                    .SetCodigo(txtCodigo2.Text)
+                    .SetProductoServicio(txtProductoServicio2.Text)
+                    .SetCantidad(decimal.Parse(txtCant2.Text))
+                    .SetUnidadMedida(cbxUmedida2.Text)
+                    .SetPrecioUnitario(decimal.Parse(txtPrecUnitario2.Text))
+                    .SetPorcentajeBonificacion(decimal.Parse(txtPorcentajeBon2.Text))
+                    .SetAlicuotaIVA(decimal.Parse(cbxAlicuotaIVA2.Text))
+                    .Build();
+            builder.AddRenglon(renglon);
+
+            renglon = builder.GetRenglon()
+                   .SetCodigo(txtCodigo3.Text)
+                   .SetProductoServicio(txtProductoServicio3.Text)
+                   .SetCantidad(decimal.Parse(txtCant3.Text))
+                   .SetUnidadMedida(cbxUmedida3.Text)
+                   .SetPrecioUnitario(decimal.Parse(txtPrecUnitario3.Text))
+                   .SetPorcentajeBonificacion(decimal.Parse(txtPorcentajeBon3.Text))
+                   .SetAlicuotaIVA(decimal.Parse(cbxAlicuotaIVA3.Text))
+                   .Build();
+            builder.AddRenglon(renglon);
         }
 		
 		private void calcularImportes(TextBox txtCantidad, TextBox txtPrecio, TextBox txtBonificacionPorcentaje, TextBox txtBonificacionImporte, TextBox txtSubTotal,ComboBox cbxIVAPorcentaje,TextBox txtIVA, TextBox txtTotal){
@@ -331,7 +318,7 @@ namespace SimuladorFacturacion
 		}
         private void btnAnterior_Click(object sender, EventArgs e)
 		{
-			App.MostrarDatosReceptor();
+            _navigationService.NavigateBack();
 			Hide();
 		}
 
@@ -933,17 +920,20 @@ namespace SimuladorFacturacion
                 }
 
                 cargarData();
-                App.DataFacturacion.ImpOtrosTributos = txtImpOtrosTributos.Text;
-                App.DataFacturacion.ImpNetoGravado = txtImpNetoGravado.Text;
-                App.DataFacturacion.IVA27 = txtIVA27.Text;
-                App.DataFacturacion.IVA21 = txtIVA21.Text;
-                App.DataFacturacion.IVA10 = txtIVA10.Text;
-                App.DataFacturacion.IVA5 = txtIVA5.Text;
-                App.DataFacturacion.IVA2 = txtIVA2.Text;
-                App.DataFacturacion.IVA0 = txtIVA0.Text;
-                App.DataFacturacion.ImpTotal = txtImpTotal.Text;
-
-                App.MostrarFormImpresion();
+                _facturacionService.GetBuilder()
+                .GetImporte()
+                    .SetOtrosTributos(decimal.Parse(txtImpOtrosTributos.Text))
+                    .SetNetoGravado(decimal.Parse(txtImpNetoGravado.Text))
+                    .SetIVA27(decimal.Parse(txtIVA27.Text))
+                    .SetIVA21(decimal.Parse(txtIVA21.Text))
+                    .SetIVA10(decimal.Parse(txtIVA10.Text))
+                    .SetIVA5(decimal.Parse(txtIVA5.Text))
+                    .SetIVA2(decimal.Parse(txtIVA2.Text))
+                    .SetIVA0(decimal.Parse(txtIVA0.Text))
+                    .SetOtrosTributos(decimal.Parse(txtImpOtrosTributos.Text))
+                    .SetNetoGravado(decimal.Parse(txtImpNetoGravado.Text))
+                    .Build();
+                _navigationService.NavigateTo<FormImpresion>();
                 Hide();
             }
         }

@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Reporting.WinForms;
+﻿using Microsoft.Reporting.WinForms;
+using SimuladorFacturacion.Core.Application.Services;
+using SimuladorFacturacion.Core.Domain.Interfaces.Services;
+using System;
 using System.Drawing.Printing;
+using System.Windows.Forms;
 
 
 namespace SimuladorFacturacion
 {
     public partial class FormImpresion : Form
     {
-        public FormImpresion()
+        private readonly FacturacionService _facturacionService;
+        private readonly INavigationService _navigationService;
+        public FormImpresion(FacturacionService facturacionService, INavigationService navigationService)
         {
+            _facturacionService = facturacionService;
+            _navigationService = navigationService;
             InitializeComponent();
         }
 
@@ -27,9 +26,8 @@ namespace SimuladorFacturacion
 
         public void iniciar()
         {
-
-
-            ReportDataSource rds = new ReportDataSource("DataSet1", App.DataFacturacion.Renglones);
+            var factura = _facturacionService.GetCurrentFactura();
+            ReportDataSource rds = new ReportDataSource("DataSet1", factura.Renglones);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "SimuladorFacturacion.Report1.rdlc";
             this.reportViewer.LocalReport.DataSources.Clear();
             this.reportViewer.LocalReport.DataSources.Add(rds);
@@ -48,30 +46,32 @@ namespace SimuladorFacturacion
 
 
             // Definir el parámetro
-            ReportParameter rpRazonSocialEmisor = new ReportParameter("RPRazonSocialEmisor", App.DataFacturacion.RazonSocialEmisor);
-            ReportParameter rpDomicilioComercialEmisor = new ReportParameter("RPDomicilioComercialEmisor", App.DataFacturacion.DomicilioComercialEmisor);
-            ReportParameter rpCondicionIVA_Emisor = new ReportParameter("RPCondicionIVA_Emisor", App.DataFacturacion.CondicionIVA_Emisor);
-            ReportParameter rpCuitEmisor = new ReportParameter("RPCuitEmisor", App.DataFacturacion.CUITemisor);
-            ReportParameter rpFechaInicioAct = new ReportParameter("RPFechaInicioActividades", App.DataFacturacion.FechaInicioActividades.ToString());
-            ReportParameter rpCuitEmisorGuion = new ReportParameter("RPCuitEmisorGuion", App.DataFacturacion.CUITemisorConGuion);
-            ReportParameter rpRazonSocial = new ReportParameter("RPRazonSocial", App.DataFacturacion.RazonSocial);
-            ReportParameter rpDomicilio = new ReportParameter("RPDomicilioComercial", App.DataFacturacion.DomicilioComercial);
-            ReportParameter rpCondicionIVA = new ReportParameter("RPCondicionIVA", App.DataFacturacion.CondicionIVA);
-            ReportParameter rpPuntoVenta = new ReportParameter("RPPuntoVenta", App.DataFacturacion.PuntoVentas);
-            ReportParameter rpFechaEmision = new ReportParameter("RPFechaEmision", App.DataFacturacion.FechaEmision.ToString());
-            ReportParameter rpCuit = new ReportParameter("RPCuit", App.DataFacturacion.CUIT);
-            ReportParameter rpLetraComprobante = new ReportParameter("RPLetraComprobante", App.DataFacturacion.LetraComprobante);
-            ReportParameter rpTipoComprobante = new ReportParameter("RPTipoComprobante", App.DataFacturacion.ComprobanteNoLetra);
-            ReportParameter rpCondicionVenta = new ReportParameter("RPCondicionVenta", App.DataFacturacion.CondicionesVenta);
-            ReportParameter rpImporteOtrosTributos = new ReportParameter("RPImporteOtrosTributos", App.DataFacturacion.ImpOtrosTributos);
-            ReportParameter rpImpNetoGravado = new ReportParameter("RPImporteNetoGravado", App.DataFacturacion.ImpNetoGravado);
-            ReportParameter rpIVA27 = new ReportParameter("RPIva27", App.DataFacturacion.IVA27);
-            ReportParameter rpIVA21 = new ReportParameter("RPIva21", App.DataFacturacion.IVA21);
-            ReportParameter rpIVA10 = new ReportParameter("RPIva10", App.DataFacturacion.IVA10);
-            ReportParameter rpIVA5 = new ReportParameter("RPIva5", App.DataFacturacion.IVA5);
-            ReportParameter rpIVA2 = new ReportParameter("RPIva2", App.DataFacturacion.IVA2);
-            ReportParameter rpIVA0 = new ReportParameter("RPIva0", App.DataFacturacion.IVA0);
-            ReportParameter rpImporteTotal = new ReportParameter("RPImporteTotal", App.DataFacturacion.ImpTotal);
+            ReportParameter rpRazonSocialEmisor = new ReportParameter("RPRazonSocialEmisor", factura.Emisor.RazonSocial);
+            ReportParameter rpDomicilioComercialEmisor = new ReportParameter("RPDomicilioComercialEmisor", factura.Emisor.DomicilioComercial);
+            ReportParameter rpCondicionIVAEmisor = new ReportParameter("RPCondicionIVA_Emisor", factura.Emisor.CondicionIVA);
+            ReportParameter rpCuitEmisor = new ReportParameter("RPCuitEmisor", factura.Emisor.CUIT);
+            ReportParameter rpFechaInicioAct = new ReportParameter("RPFechaInicioActividades", factura.Emisor.FechaInicioActividades.ToString());
+            //ReportParameter rpCuitEmisorGuion = new ReportParameter("RPCuitEmisorGuion", FormatCUITWithDashes(factura.Emisor.CUIT));
+            ReportParameter rpCuitEmisorGuion = new ReportParameter("RPCuitEmisorGuion", "123123123");
+            ReportParameter rpRazonSocial = new ReportParameter("RPRazonSocial", factura.Receptor.RazonSocial);
+            ReportParameter rpDomicilio = new ReportParameter("RPDomicilioComercial", factura.Receptor.DomicilioComercial);
+            ReportParameter rpCondicionIVA = new ReportParameter("RPCondicionIVA", factura.Receptor.CondicionIVA);
+            ReportParameter rpCuit = new ReportParameter("RPCuit", factura.Receptor.CUIT);
+            ReportParameter rpPuntoVenta = new ReportParameter("RPPuntoVenta", factura.Comprobante.PuntoVenta.ToString());
+            ReportParameter rpFechaEmision = new ReportParameter("RPFechaEmision", factura.Comprobante.FechaEmision.ToString());
+            ReportParameter rpLetraComprobante = new ReportParameter("RPLetraComprobante", factura.Comprobante.LetraComprobante);
+            ReportParameter rpTipoComprobante = new ReportParameter("RPTipoComprobante", factura.Comprobante.TipoComprobante);
+            ReportParameter rpCondicionVenta = new ReportParameter("RPCondicionVenta", factura.Comprobante.CondicionesVenta);
+            ReportParameter rpImporteOtrosTributos = new ReportParameter("RPImporteOtrosTributos", factura.Importes.OtrosTributos.ToString());
+            ReportParameter rpImpNetoGravado = new ReportParameter("RPImporteNetoGravado", factura.Importes.NetoGravado.ToString());
+            ReportParameter rpIVA27 = new ReportParameter("RPIva27", factura.Importes.IVA27.ToString());
+            ReportParameter rpIVA21 = new ReportParameter("RPIva21", factura.Importes.IVA21.ToString());
+            ReportParameter rpIVA10 = new ReportParameter("RPIva10", factura.Importes.IVA10.ToString());
+            ReportParameter rpIVA5 = new ReportParameter("RPIva5", factura.Importes.IVA5.ToString());
+            ReportParameter rpIVA2 = new ReportParameter("RPIva2", factura.Importes.IVA2.ToString());
+            ReportParameter rpIVA0 = new ReportParameter("RPIva0", factura.Importes.IVA0.ToString());
+            ReportParameter rpImporteTotal = new ReportParameter("RPImporteTotal", factura.Importes.GetImporteTotal().ToString());
+            //ReportParameter rpTipoComprobante = new ReportParameter("RPTipoComprobante", App.DataFacturacion.ComprobanteNoLetra);
 
 
             // Asignar el parámetro al ReportViewer
@@ -79,7 +79,7 @@ namespace SimuladorFacturacion
     });
             this.reportViewer.LocalReport.SetParameters(new ReportParameter[] { rpDomicilioComercialEmisor
 });
-            this.reportViewer.LocalReport.SetParameters(new ReportParameter[] { rpCondicionIVA_Emisor });
+            this.reportViewer.LocalReport.SetParameters(new ReportParameter[] { rpCondicionIVAEmisor });
             this.reportViewer.LocalReport.SetParameters(new ReportParameter[] { rpCuitEmisor });
             this.reportViewer.LocalReport.SetParameters(new ReportParameter[] { rpFechaInicioAct });
             this.reportViewer.LocalReport.SetParameters(new ReportParameter[] { rpCuitEmisorGuion });
@@ -107,7 +107,7 @@ namespace SimuladorFacturacion
         }
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            App.MostrarDatosOperacion();
+            _navigationService.NavigateTo<FormDatosOperacion>();
             Hide();
         }
 

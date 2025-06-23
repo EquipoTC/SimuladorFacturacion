@@ -1,3 +1,5 @@
+using SimuladorFacturacion.Core.Application.Services;
+using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using System;
 using System.Windows.Forms;
 
@@ -5,9 +7,13 @@ namespace SimuladorFacturacion
 {
 	public partial class FormDatosEmision : Form
 	{
-		public FormDatosEmision()
+        private readonly FacturacionService _facturacionService;
+        private readonly INavigationService _navigationService;
+        public FormDatosEmision(FacturacionService facturacionService, INavigationService navigationService)
 		{
-			InitializeComponent();
+            _facturacionService = facturacionService;
+            _navigationService = navigationService;
+            InitializeComponent();
             this.KeyPreview = true;
         }
 		void Label1Click(object sender, EventArgs e)
@@ -20,7 +26,7 @@ namespace SimuladorFacturacion
 		}
 		void BtnAnteriorClick(object sender, EventArgs e)
 		{
-			App.MostrarFromPuntosVenta();
+            _navigationService.NavigateTo<FormPuntosVenta>();
 			Hide();
 		}
 
@@ -39,14 +45,16 @@ namespace SimuladorFacturacion
             {
                 return;
             }
-            //controlar las validaciones, para ello crear una funcion que valide que el usuarios haya seleccionado un concepto
-            //caso contrario mostrar error (mirar como esta hecho en FormPuntosVenta)
-            ////guardar los datos en App.DataFacturacion
-			App.DataFacturacion.FechaEmision = dtpFechaComprobante.Value;
-            App.DataFacturacion.ConceptosIncluir = cbxConceptos.Text;
+            /*controlar las validaciones, para ello crear una funcion que valide que el usuarios haya seleccionado un concepto
+            caso contrario mostrar error (mirar como esta hecho en FormPuntosVenta)
+            guardar los datos en App.DataFacturacion*/
 
-            App.MostrarDatosReceptor();
-			Hide();
+            _facturacionService.GetBuilder()
+                .GetComprobante()
+                    .SetFechaEmision(dtpFechaComprobante.Value)
+                    .SetConceptos(cbxConceptos.Text);
+            _navigationService.NavigateTo<FormDatosReceptor>();
+            Hide();
 		}
 
         private void FormDatosEmision_FormClosing(object sender, FormClosingEventArgs e)
@@ -72,10 +80,11 @@ namespace SimuladorFacturacion
                 {
                     return;
                 }
-                App.DataFacturacion.FechaEmision = dtpFechaComprobante.Value;
-                App.DataFacturacion.ConceptosIncluir = cbxConceptos.Text;
-
-                App.MostrarDatosReceptor();
+                _facturacionService.GetBuilder()
+                .GetComprobante()
+                    .SetFechaEmision(dtpFechaComprobante.Value)
+                    .SetConceptos(cbxConceptos.Text);
+                _navigationService.NavigateTo<FormDatosReceptor>();
                 Hide();
             }
         }
