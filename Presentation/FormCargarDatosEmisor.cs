@@ -1,20 +1,18 @@
+using SimuladorFacturacion.Interfaces;
+using SimuladorFacturacion.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SimuladorFacturacion
 {
     public partial class FormCargarDatosEmisor : Form
     {
-        public FormCargarDatosEmisor()
+        private FacturacionService _facturacionService;
+        private readonly INavigationService _navigationService;
+        public FormCargarDatosEmisor(FacturacionService facturacionService, INavigationService navigationService)
         {
+            _facturacionService = facturacionService;
+            _navigationService = navigationService;
             InitializeComponent();
             this.KeyPreview = true;
 
@@ -56,15 +54,18 @@ namespace SimuladorFacturacion
                 }
             }
 
-
-            App.DataFacturacion.RazonSocialEmisor = txtRazonSocial_Emisor.Text;
-            App.DataFacturacion.CUITemisor = txtCuit_Emisor.Text;
-            App.DataFacturacion.DomicilioComercialEmisor = txtDomicilioComercial_Emisor.Text;
-            App.DataFacturacion.CondicionIVA_Emisor = cbxCondicionIVA_Emisor.Text;
-            App.DataFacturacion.FechaInicioActividades = dtpFechaInicioActividades.Value;
-            App.DataFacturacion.CUITemisorConGuion = CuitConGuion;
-
-            App.MostrarFromPuntosVenta();
+            _facturacionService.GetBuilder()
+                .GetEmisor()
+                    .SetRazonSocial(txtRazonSocial_Emisor.Text)
+                    .SetCUIT(txtCuit_Emisor.Text)
+                    .SetDomicilio(txtDomicilioComercial_Emisor.Text)
+                    .SetCondicionIVA(cbxCondicionIVA_Emisor.Text)
+                    .SetFechaInicioActividades(dtpFechaInicioActividades.Value)
+                    .Build();
+            /*txtRazonSocial_Emisor.Text, txtCuit_Emisor.Text,
+                    txtDomicilioComercial_Emisor.Text, cbxCondicionIVA_Emisor.Text,
+                    dtpFechaInicioActividades.Value);*/
+            _navigationService.NavigateTo<FormPuntosVenta>();
             Hide();
         }
 
@@ -128,15 +129,15 @@ namespace SimuladorFacturacion
                     }
                 }
 
-
-                App.DataFacturacion.RazonSocialEmisor = txtRazonSocial_Emisor.Text;
-                App.DataFacturacion.CUITemisor = txtCuit_Emisor.Text;
-                App.DataFacturacion.DomicilioComercialEmisor = txtDomicilioComercial_Emisor.Text;
-                App.DataFacturacion.CondicionIVA_Emisor = cbxCondicionIVA_Emisor.Text;
-                App.DataFacturacion.FechaInicioActividades = dtpFechaInicioActividades.Value;
-                App.DataFacturacion.CUITemisorConGuion = CuitConGuion;
-
-                App.MostrarFromPuntosVenta();
+                _facturacionService.GetBuilder()
+                .GetEmisor()
+                    .SetRazonSocial(txtRazonSocial_Emisor.Text)
+                    .SetCUIT(txtCuit_Emisor.Text)
+                    .SetDomicilio(txtDomicilioComercial_Emisor.Text)
+                    .SetCondicionIVA(cbxCondicionIVA_Emisor.Text)
+                    .SetFechaInicioActividades(dtpFechaInicioActividades.Value)
+                    .Build();
+                _navigationService.NavigateTo<FormPuntosVenta>();
                 Hide();
             }
         }
