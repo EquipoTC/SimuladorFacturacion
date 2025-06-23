@@ -2,7 +2,7 @@
 
 namespace SimuladorFacturacion.Interfaces
 {
-    public interface IRenglonBuilder
+    public interface IRenglonBuilder : IBuilder<RenglonModel>
     {
         IRenglonBuilder SetCodigo(string codigo);
         IRenglonBuilder SetProductoServicio(string productoServicio);
@@ -14,6 +14,5 @@ namespace SimuladorFacturacion.Interfaces
         IRenglonBuilder SetDatos(string codigo, string productoServicio, decimal cantidad, string unidadMedida, decimal precioUnitario);
         IRenglonBuilder SetDatos(string codigo, string productoServicio, decimal cantidad, string unidadMedida, decimal precioUnitario, decimal porcentajeBonificacion);
         IRenglonBuilder SetDatos(string codigo, string productoServicio, decimal cantidad, string unidadMedida, decimal precioUnitario, decimal porcentajeBonificacion, decimal alicuotaIVA);
-        RenglonModel Build();
     }
 }

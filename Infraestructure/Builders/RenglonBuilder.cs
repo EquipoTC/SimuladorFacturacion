@@ -20,6 +20,11 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             _renglon = new RenglonModel();
         }
 
+        public RenglonModel GetProduct()
+        {
+            return _renglon;
+        }
+
         public IRenglonBuilder SetCodigo(string codigo)
         {
             _renglon.Codigo = codigo;
