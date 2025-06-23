@@ -4,7 +4,7 @@ using SimuladorFacturacion.Core.Domain.Interfaces.Builders;
 namespace SimuladorFacturacion.Infraestructure.Builders
 {
     public abstract class PersonaBuilder<T, TBuilder> : IPersonaBuilder<T, TBuilder> 
-        where T : PersonaModel
+        where T : PersonaModel, new()
         where TBuilder : IPersonaBuilder<T, TBuilder>
     {
         protected T _persona;

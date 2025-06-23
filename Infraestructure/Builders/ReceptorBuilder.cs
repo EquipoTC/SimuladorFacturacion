@@ -3,7 +3,7 @@ using SimuladorFacturacion.Core.Domain.Models;
 
 namespace SimuladorFacturacion.Infraestructure.Builders
 {
-    public class ReceptorBuilder : PersonaBuilder<ReceptorModel, IReceptorBuilder>
+    public class ReceptorBuilder : PersonaBuilder<ReceptorModel, IReceptorBuilder>, IReceptorBuilder
     {
         public IReceptorBuilder SetEmail(string email)
         {

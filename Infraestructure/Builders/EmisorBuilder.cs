@@ -4,7 +4,7 @@ using System;
 
 namespace SimuladorFacturacion.Infraestructure.Builders
 {
-    public class EmisorBuilder : PersonaBuilder<EmisorModel, IEmisorBuilder>
+    public class EmisorBuilder : PersonaBuilder<EmisorModel, IEmisorBuilder>, IEmisorBuilder
     {
         public IEmisorBuilder SetFechaInicioActividades(DateTime fecha)
         {
