@@ -26,8 +26,8 @@ namespace SimuladorFacturacion
 		}
 		void BtnAnteriorClick(object sender, EventArgs e)
 		{
-            _navigationService.NavigateTo<FormPuntosVenta>();
-			Hide();
+            Hide();
+            _navigationService.NavigateBack();
 		}
 
         bool validaciones()

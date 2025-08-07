@@ -329,8 +329,8 @@ namespace SimuladorFacturacion
 		}
         private void btnAnterior_Click(object sender, EventArgs e)
 		{
+            Hide();
             _navigationService.NavigateBack();
-			Hide();
 		}
 
 		private void btnBorrar1_Click(object sender, EventArgs e)

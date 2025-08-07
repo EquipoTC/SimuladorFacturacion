@@ -29,8 +29,8 @@ namespace SimuladorFacturacion
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
+            Hide();
             _navigationService.NavigateBack();
-			Hide();
         }
         bool validaciones()
         {

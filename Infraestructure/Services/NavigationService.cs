@@ -37,6 +37,8 @@ namespace SimuladorFacturacion.Infraestructure.Services
                 currentForm?.Hide();
                 currentForm = historyRecord.Pop();
                 currentForm.Show();
+                currentForm.BringToFront();
+                currentForm.Focus();
             }
         }
     }

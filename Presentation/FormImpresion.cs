@@ -17,11 +17,20 @@ namespace SimuladorFacturacion
             _facturacionService = facturacionService;
             _navigationService = navigationService;
             InitializeComponent();
+            this.VisibleChanged += new EventHandler(FormImpresion_VisibleChanged);
         }
 
         private void FormImpresion_Load(object sender, EventArgs e)
         {
             iniciar();
+        }
+
+        private void FormImpresion_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                iniciar();
+            }
         }
 
         public void iniciar()
@@ -107,8 +116,8 @@ namespace SimuladorFacturacion
         }
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            _navigationService.NavigateTo<FormDatosOperacion>();
             Hide();
+            _navigationService.NavigateBack();
         }
 
         private void FormImpresion_FormClosing(object sender, FormClosingEventArgs e)
