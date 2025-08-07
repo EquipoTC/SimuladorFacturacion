@@ -1,4 +1,4 @@
-﻿namespace SimuladorFacturacion
+namespace SimuladorFacturacion
 {
 	partial class FormPuntosVenta
 	{
@@ -86,6 +86,10 @@
             "Nota de Débito B",
             "Nota de Crédito B",
             "Recibo B",
+            "Factura C",
+            "Nota de Débito C",
+            "Nota de Crédito C",
+            "Recibo C",
             "Factura T",
             "Nota de Débito T",
             "Nota de Crédito T",
@@ -94,7 +98,10 @@
             "Nota de Crédito Electrónica MiPyMEs (FCE) A",
             "Factura de Crédito Electrónica MiPyMEs (FCE) B",
             "Nota de Débito Electrónica MiPyMEs (FCE) B",
-            "Nota de Crédito Electrónica MiPyMEs (FCE) B"});
+            "Nota de Crédito Electrónica MiPyMEs (FCE) B",
+            "Factura de Crédito Electrónica MiPyMEs (FCE) C",
+            "Nota de Débito Electrónica MiPyMEs (FCE) C",
+            "Nota de Crédito Electrónica MiPyMEs (FCE) C"});
             this.cbxTipoComprobante.Location = new System.Drawing.Point(192, 127);
             this.cbxTipoComprobante.Name = "cbxTipoComprobante";
             this.cbxTipoComprobante.Size = new System.Drawing.Size(256, 21);

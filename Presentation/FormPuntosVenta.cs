@@ -23,37 +23,37 @@ namespace SimuladorFacturacion
         {
             string seleccionado = cbxTipoComprobante.SelectedItem.ToString();
 
-            if (seleccionado == "Factura A" || seleccionado == "Factura B" || seleccionado == "Factura T")
+            if (seleccionado == "Factura A" || seleccionado == "Factura B" || seleccionado == "Factura C" || seleccionado == "Factura T")
             {
                 string tipoComprobante = seleccionado.Substring(0, 7);
                 return tipoComprobante;
             }
 
-            else if (seleccionado == "Nota de Débito A" || seleccionado == "Nota de Débito B" || seleccionado == "Nota de Débito T")
+            else if (seleccionado == "Nota de Débito A" || seleccionado == "Nota de Débito B" || seleccionado == "Nota de Débito C" || seleccionado == "Nota de Débito T")
             {
                 string tipoComprobante = seleccionado.Substring(0, 14);
                 return tipoComprobante;
             }
 
-            else if (seleccionado == "Nota de Crédito A" || seleccionado == "Nota de Crédito B" || seleccionado == "Nota de Crédito T")
+            else if (seleccionado == "Nota de Crédito A" || seleccionado == "Nota de Crédito B" || seleccionado == "Nota de Crédito C" || seleccionado == "Nota de Crédito T")
             {
                 string tipoComprobante = seleccionado.Substring(0, 15);
                 return tipoComprobante;
             }
 
-            else if (seleccionado == "Recibo A" || seleccionado == "Recibo B")
+            else if (seleccionado == "Recibo A" || seleccionado == "Recibo B" || seleccionado == "Recibo C")
             {
                 string tipoComprobante = seleccionado.Substring(0, 6);
                 return tipoComprobante;
             }
 
-            else if (seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) A" || seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) B")
+            else if (seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) A" || seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) B" || seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) C")
             {
                 string tipoComprobante = seleccionado.Substring(0, 44);
                 return tipoComprobante;
             }
 
-            else if (seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) A" || seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) B")
+            else if (seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) A" || seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) B" || seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) C")
             {
                 string tipoComprobante = seleccionado.Substring(0, 40);
                 return tipoComprobante;
@@ -70,37 +70,37 @@ namespace SimuladorFacturacion
         {
             string seleccionado = cbxTipoComprobante.SelectedItem.ToString();
 
-            if (seleccionado == "Factura A" || seleccionado == "Factura B" || seleccionado == "Factura T")
+            if (seleccionado == "Factura A" || seleccionado == "Factura B" || seleccionado == "Factura C" || seleccionado == "Factura T")
             {
                 string letraComprobante = seleccionado.Substring(8, 1);
                 return letraComprobante;
             }
 
-            else if (seleccionado == "Nota de Débito A" || seleccionado == "Nota de Débito B" || seleccionado == "Nota de Débito T")
+            else if (seleccionado == "Nota de Débito A" || seleccionado == "Nota de Débito B" || seleccionado == "Nota de Débito C" || seleccionado == "Nota de Débito T")
             {
                 string letraComprobante = seleccionado.Substring(15, 1);
                 return letraComprobante;
             }
 
-            else if (seleccionado == "Nota de Crédito A" || seleccionado == "Nota de Crédito B" || seleccionado == "Nota de Crédito T")
+            else if (seleccionado == "Nota de Crédito A" || seleccionado == "Nota de Crédito B" || seleccionado == "Nota de Crédito C" || seleccionado == "Nota de Crédito T")
             {
                 string letraComprobante = seleccionado.Substring(16, 1);
                 return letraComprobante;
             }
 
-            else if (seleccionado == "Recibo A" || seleccionado == "Recibo B")
+            else if (seleccionado == "Recibo A" || seleccionado == "Recibo B" || seleccionado == "Recibo C")
             {
                 string letraComprobante = seleccionado.Substring(7, 1);
                 return letraComprobante;
             }
 
-            else if (seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) A" || seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) B")
+            else if (seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) A" || seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) B" || seleccionado == "Factura de Crédito Electrónica MiPyMEs (FCE) C")
             {
                 string letraComprobante = seleccionado.Substring(45, 1);
                 return letraComprobante;
             }
 
-            else if (seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) A" || seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) B")
+            else if (seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) A" || seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) B" || seleccionado == "Nota de Débito Electrónica MiPyMEs (FCE) C")
             {
                 string letraComprobante = seleccionado.Substring(41, 1);
                 return letraComprobante;
@@ -150,9 +150,8 @@ namespace SimuladorFacturacion
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            _navigationService.NavigateBack();
-            //App.MostrarCargarDatosEmisor();
             Hide();
+            _navigationService.NavigateBack();
         }
 
         private void FromPuntosVenta_Load(object sender, EventArgs e)
