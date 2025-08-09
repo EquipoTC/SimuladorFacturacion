@@ -6,6 +6,7 @@ using SimuladorFacturacion.Core.Domain.Interfaces.Services;
 using SimuladorFacturacion.Infraestructure.Builders;
 using SimuladorFacturacion.Infraestructure.Repositories;
 using SimuladorFacturacion.Infraestructure.Services;
+using SimuladorFacturacion.Presentation;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,6 +28,7 @@ namespace SimuladorFacturacion
             .AddSingleton<FormDatosReceptor>()
             .AddSingleton<FormImpresion>()
             .AddSingleton<FormCargarDatosEmisor>()
+            .AddSingleton<FormDatosOperacionRenewed>()
 
             // Repositorios
             .AddSingleton<IFacturaRepository, FacturaRepository>()
@@ -47,7 +49,7 @@ namespace SimuladorFacturacion
 
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(servicesContainer.GetService<MainForm>());
+			Application.Run(servicesContainer.GetService<FormDatosOperacionRenewed>());
 		}
 		
 	}

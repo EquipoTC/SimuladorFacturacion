@@ -38,6 +38,7 @@
             this.btnEliminarProductos = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.panelImporte = new System.Windows.Forms.Panel();
+            this.btnAnterior = new System.Windows.Forms.Button();
             this.txtImpTotal = new System.Windows.Forms.TextBox();
             this.txtImpOtrosTributos = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -111,7 +112,6 @@
             this.lblDetalle = new System.Windows.Forms.Label();
             this.lblBaseImp = new System.Windows.Forms.Label();
             this.lblImporte = new System.Windows.Forms.Label();
-            this.btnAnterior = new System.Windows.Forms.Button();
             this.panelProductos.SuspendLayout();
             this.panelIngresoProductos.SuspendLayout();
             this.panelTitulo.SuspendLayout();
@@ -213,6 +213,7 @@
             this.btnEliminarProductos.TabIndex = 1;
             this.btnEliminarProductos.Text = "Eliminar Todos Productos";
             this.btnEliminarProductos.UseVisualStyleBackColor = true;
+            this.btnEliminarProductos.Click += new System.EventHandler(this.btnEliminarProductos_Click);
             // 
             // btnAgregarProducto
             // 
@@ -243,6 +244,17 @@
             this.panelImporte.Name = "panelImporte";
             this.panelImporte.Size = new System.Drawing.Size(1084, 119);
             this.panelImporte.TabIndex = 1;
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnterior.Location = new System.Drawing.Point(12, 84);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(75, 23);
+            this.btnAnterior.TabIndex = 125;
+            this.btnAnterior.Text = "< Anterior";
+            this.btnAnterior.UseVisualStyleBackColor = false;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
             // txtImpTotal
             // 
@@ -322,6 +334,7 @@
             this.btnSiguiente.TabIndex = 118;
             this.btnSiguiente.Text = "Finalizar >";
             this.btnSiguiente.UseVisualStyleBackColor = false;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // panelIVA
             // 
@@ -738,6 +751,7 @@
             this.txtImpuestosMunicipales_Alicuota.Name = "txtImpuestosMunicipales_Alicuota";
             this.txtImpuestosMunicipales_Alicuota.Size = new System.Drawing.Size(80, 20);
             this.txtImpuestosMunicipales_Alicuota.TabIndex = 115;
+            this.txtImpuestosMunicipales_Alicuota.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtImpuestosMunicipales_BaseImp
             // 
@@ -745,6 +759,7 @@
             this.txtImpuestosMunicipales_BaseImp.Name = "txtImpuestosMunicipales_BaseImp";
             this.txtImpuestosMunicipales_BaseImp.Size = new System.Drawing.Size(112, 20);
             this.txtImpuestosMunicipales_BaseImp.TabIndex = 114;
+            this.txtImpuestosMunicipales_BaseImp.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtImpuestosMunicipales_Detalle
             // 
@@ -769,6 +784,7 @@
             this.txtImpuestosInternos_Alicuota.Name = "txtImpuestosInternos_Alicuota";
             this.txtImpuestosInternos_Alicuota.Size = new System.Drawing.Size(80, 20);
             this.txtImpuestosInternos_Alicuota.TabIndex = 112;
+            this.txtImpuestosInternos_Alicuota.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtImpuestosInternos_BaseImp
             // 
@@ -776,6 +792,7 @@
             this.txtImpuestosInternos_BaseImp.Name = "txtImpuestosInternos_BaseImp";
             this.txtImpuestosInternos_BaseImp.Size = new System.Drawing.Size(112, 20);
             this.txtImpuestosInternos_BaseImp.TabIndex = 111;
+            this.txtImpuestosInternos_BaseImp.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtImpuestosInternos_Detalle
             // 
@@ -846,6 +863,7 @@
             this.txtPerRetIngresosBrutos_Alicuota.Name = "txtPerRetIngresosBrutos_Alicuota";
             this.txtPerRetIngresosBrutos_Alicuota.Size = new System.Drawing.Size(80, 20);
             this.txtPerRetIngresosBrutos_Alicuota.TabIndex = 109;
+            this.txtPerRetIngresosBrutos_Alicuota.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtPerRetIngresosBrutos_BaseImp
             // 
@@ -853,6 +871,7 @@
             this.txtPerRetIngresosBrutos_BaseImp.Name = "txtPerRetIngresosBrutos_BaseImp";
             this.txtPerRetIngresosBrutos_BaseImp.Size = new System.Drawing.Size(112, 20);
             this.txtPerRetIngresosBrutos_BaseImp.TabIndex = 108;
+            this.txtPerRetIngresosBrutos_BaseImp.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtPerRetIngresosBrutos_Detalle
             // 
@@ -867,6 +886,7 @@
             this.txtPerRetGanancias_Alicuota.Name = "txtPerRetGanancias_Alicuota";
             this.txtPerRetGanancias_Alicuota.Size = new System.Drawing.Size(80, 20);
             this.txtPerRetGanancias_Alicuota.TabIndex = 103;
+            this.txtPerRetGanancias_Alicuota.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtPerRetGanancias_BaseImp
             // 
@@ -874,6 +894,7 @@
             this.txtPerRetGanancias_BaseImp.Name = "txtPerRetGanancias_BaseImp";
             this.txtPerRetGanancias_BaseImp.Size = new System.Drawing.Size(112, 20);
             this.txtPerRetGanancias_BaseImp.TabIndex = 102;
+            this.txtPerRetGanancias_BaseImp.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtPerRetGanancias_Detalle
             // 
@@ -888,6 +909,7 @@
             this.txtPerRetIVA_Alicuota.Name = "txtPerRetIVA_Alicuota";
             this.txtPerRetIVA_Alicuota.Size = new System.Drawing.Size(80, 20);
             this.txtPerRetIVA_Alicuota.TabIndex = 106;
+            this.txtPerRetIVA_Alicuota.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtPerRetIVA_BaseImp
             // 
@@ -895,6 +917,7 @@
             this.txtPerRetIVA_BaseImp.Name = "txtPerRetIVA_BaseImp";
             this.txtPerRetIVA_BaseImp.Size = new System.Drawing.Size(112, 20);
             this.txtPerRetIVA_BaseImp.TabIndex = 105;
+            this.txtPerRetIVA_BaseImp.TextChanged += new System.EventHandler(this.calcularImporteOtrosTributos);
             // 
             // txtPerRetIVA_Detalle
             // 
@@ -1058,16 +1081,6 @@
             this.lblImporte.Size = new System.Drawing.Size(59, 16);
             this.lblImporte.TabIndex = 128;
             this.lblImporte.Text = "Importe";
-            // 
-            // btnAnterior
-            // 
-            this.btnAnterior.BackColor = System.Drawing.Color.Transparent;
-            this.btnAnterior.Location = new System.Drawing.Point(12, 84);
-            this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(75, 23);
-            this.btnAnterior.TabIndex = 125;
-            this.btnAnterior.Text = "< Anterior";
-            this.btnAnterior.UseVisualStyleBackColor = false;
             // 
             // FormDatosOperacionRenewed
             // 
