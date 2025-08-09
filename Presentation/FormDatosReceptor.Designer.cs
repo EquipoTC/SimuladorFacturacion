@@ -116,7 +116,7 @@ namespace SimuladorFacturacion
             // btnSiguiente
             // 
             this.btnSiguiente.BackColor = System.Drawing.Color.Transparent;
-            this.btnSiguiente.Location = new System.Drawing.Point(447, 212);
+            this.btnSiguiente.Location = new System.Drawing.Point(447, 249);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
             this.btnSiguiente.TabIndex = 6;
@@ -127,7 +127,7 @@ namespace SimuladorFacturacion
             // btnAnterior
             // 
             this.btnAnterior.BackColor = System.Drawing.Color.Transparent;
-            this.btnAnterior.Location = new System.Drawing.Point(19, 212);
+            this.btnAnterior.Location = new System.Drawing.Point(12, 249);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(75, 23);
             this.btnAnterior.TabIndex = 11;
@@ -158,10 +158,12 @@ namespace SimuladorFacturacion
             "Cuenta Corriente",
             "Cheque",
             "Ticket",
-            "Otra"});
+            "Transferencia Bancaria",
+            "Otra",
+            "Otros medios de pago electrónico"});
             this.ckbCondicionesVenta.Location = new System.Drawing.Point(15, 287);
             this.ckbCondicionesVenta.Name = "ckbCondicionesVenta";
-            this.ckbCondicionesVenta.Size = new System.Drawing.Size(155, 147);
+            this.ckbCondicionesVenta.Size = new System.Drawing.Size(266, 189);
             this.ckbCondicionesVenta.TabIndex = 5;
             this.ckbCondicionesVenta.SelectedIndexChanged += new System.EventHandler(this.ckbCondicionesVenta_SelectedIndexChanged);
             // 
@@ -259,16 +261,17 @@ namespace SimuladorFacturacion
             this.panel3.Controls.Add(this.btnAnterior);
             this.panel3.Controls.Add(this.btnSiguiente);
             this.panel3.Controls.Add(this.lblCondicionVenta);
-            this.panel3.Location = new System.Drawing.Point(-2, 247);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 247);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(537, 247);
+            this.panel3.Size = new System.Drawing.Size(534, 284);
             this.panel3.TabIndex = 121;
             // 
             // FormDatosReceptor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 488);
+            this.ClientSize = new System.Drawing.Size(534, 531);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.ckbCondicionesVenta);
             this.Controls.Add(this.txtEmail);
