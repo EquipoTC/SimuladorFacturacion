@@ -49,7 +49,7 @@ namespace SimuladorFacturacion
 
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(servicesContainer.GetService<FormDatosOperacionRenewed>());
+			Application.Run(servicesContainer.GetService<MainForm>());
 		}
 		
 	}

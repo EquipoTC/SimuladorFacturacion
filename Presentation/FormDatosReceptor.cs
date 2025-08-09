@@ -1,5 +1,6 @@
 using SimuladorFacturacion.Core.Application.Services;
 using SimuladorFacturacion.Core.Domain.Interfaces.Services;
+using SimuladorFacturacion.Presentation;
 using System;
 using System.Drawing;
 using System.Text;
@@ -92,7 +93,7 @@ namespace SimuladorFacturacion
             }
             _facturacionService.GetBuilder().GetComprobante()
                 .SetCondicionesVenta(opcionesSeleccionadas.ToString());
-            _navigationService.NavigateTo<FormDatosOperacion>();
+            _navigationService.NavigateTo<FormDatosOperacionRenewed>();
 			Hide();
         }
 

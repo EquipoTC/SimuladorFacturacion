@@ -300,11 +300,12 @@ namespace SimuladorFacturacion.Presentation
                 var renglon = builder.GetRenglon()
                     .SetCodigo(producto.Codigo)
                     .SetProductoServicio(producto.Producto)
-                    .SetCantidad(string.IsNullOrWhiteSpace(producto.Cantidad) ? 0 : decimal.Parse(producto.Cantidad))
+                    .SetCantidad(string.IsNullOrWhiteSpace(producto.Cantidad) ? 0 : (decimal)App.StrToDouble(producto.Cantidad))
                     .SetUnidadMedida(producto.UnidadMedida)
-                    .SetPrecioUnitario(string.IsNullOrWhiteSpace(producto.PrecioUnitario) ? 0 : decimal.Parse(producto.PrecioUnitario))
-                    .SetPorcentajeBonificacion(string.IsNullOrWhiteSpace(producto.PorcentajeBonificacion) ? 0 : decimal.Parse(producto.PorcentajeBonificacion))
-                    .SetAlicuotaIVA(string.IsNullOrWhiteSpace(producto.AlicuotaIVA) ? 0 : decimal.Parse(producto.AlicuotaIVA))
+                    .SetPrecioUnitario(string.IsNullOrWhiteSpace(producto.PrecioUnitario) ? 0 : (decimal)App.StrToDouble(producto.PrecioUnitario))
+                    .SetPorcentajeBonificacion(string.IsNullOrWhiteSpace(producto.PorcentajeBonificacion) ? 0 : (decimal)App.StrToDouble(producto.PorcentajeBonificacion))
+                    .SetAlicuotaIVA(string.IsNullOrWhiteSpace(producto.AlicuotaIVA) ? 0 : 
+                        producto.AlicuotaIVA == "No gravado" || producto.AlicuotaIVA == "Exento" ? 0 : (decimal)App.StrToDouble(producto.AlicuotaIVA))
                     .Build();
                 builder.AddRenglon(renglon);
             }
