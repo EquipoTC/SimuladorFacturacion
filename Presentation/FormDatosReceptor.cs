@@ -149,7 +149,7 @@ namespace SimuladorFacturacion
                 }
                 _facturacionService.GetBuilder().GetComprobante()
                 .SetCondicionesVenta(opcionesSeleccionadas.ToString());
-                _navigationService.NavigateTo<FormDatosOperacion>();
+                _navigationService.NavigateTo<FormDatosOperacionRenewed>();
                 Hide();
             }
         }

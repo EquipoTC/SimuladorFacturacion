@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace SimuladorFacturacion
@@ -27,5 +28,11 @@ namespace SimuladorFacturacion
 			double result;
 			return double.TryParse(input, out result) ? result : defaultValue;
 		}
-	}
+        public static decimal StrToDecimal(string input, decimal defaultValue = 0M)
+        {
+            if (decimal.TryParse(input, NumberStyles.Number, CultureInfo.CurrentCulture, out var result))
+                return result;
+            return defaultValue;
+        }
+    }
 }

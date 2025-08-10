@@ -201,6 +201,7 @@
             this.panelProductoBotones.Padding = new System.Windows.Forms.Padding(5);
             this.panelProductoBotones.Size = new System.Drawing.Size(1084, 35);
             this.panelProductoBotones.TabIndex = 0;
+            this.panelProductoBotones.Paint += new System.Windows.Forms.PaintEventHandler(this.panelProductoBotones_Paint);
             // 
             // btnEliminarProductos
             // 
@@ -244,6 +245,7 @@
             this.panelImporte.Name = "panelImporte";
             this.panelImporte.Size = new System.Drawing.Size(1084, 119);
             this.panelImporte.TabIndex = 1;
+            this.panelImporte.Paint += new System.Windows.Forms.PaintEventHandler(this.panelImporte_Paint);
             // 
             // btnAnterior
             // 
@@ -724,6 +726,7 @@
             this.panelDetalle.Name = "panelDetalle";
             this.panelDetalle.Size = new System.Drawing.Size(734, 304);
             this.panelDetalle.TabIndex = 3;
+            this.panelDetalle.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDetalle_Paint);
             // 
             // txtImporteOtrosTributos
             // 

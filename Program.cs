@@ -24,7 +24,6 @@ namespace SimuladorFacturacion
             .AddSingleton<MainForm>()
             .AddSingleton<FormPuntosVenta>()
             .AddSingleton<FormDatosEmision>()
-            .AddSingleton<FormDatosOperacion>()
             .AddSingleton<FormDatosReceptor>()
             .AddSingleton<FormImpresion>()
             .AddSingleton<FormCargarDatosEmisor>()

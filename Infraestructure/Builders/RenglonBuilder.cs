@@ -60,9 +60,10 @@ namespace SimuladorFacturacion.Infraestructure.Builders
             return this;
         }
 
-        public IRenglonBuilder SetAlicuotaIVA(decimal alicuota)
+        public IRenglonBuilder SetAlicuotaIVA(string alicuotaNombre, decimal alicuotaNumero)
         {
-            _renglon.AlicuotaIVA = alicuota;
+            _renglon.AlicuotaNombre = alicuotaNombre;
+            _renglon.AlicuotaIVA = alicuotaNumero;
             return this;
         }
 

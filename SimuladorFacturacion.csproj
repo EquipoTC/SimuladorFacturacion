@@ -147,12 +147,6 @@
     <Compile Include="Presentation\FormDatosEmision.Designer.cs">
       <DependentUpon>FormDatosEmision.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\FormDatosOperacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\FormDatosOperacion.Designer.cs">
-      <DependentUpon>FormDatosOperacion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\FormDatosReceptor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,9 +201,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\FormDatosEmision.resx">
       <DependentUpon>FormDatosEmision.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\FormDatosOperacion.resx">
-      <DependentUpon>FormDatosOperacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\FormDatosReceptor.resx">
       <DependentUpon>FormDatosReceptor.cs</DependentUpon>

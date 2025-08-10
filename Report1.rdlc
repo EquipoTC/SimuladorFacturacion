@@ -17,13 +17,13 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="AlicuotaIVA">
-          <DataField>AlicuotaIVA</DataField>
+        <Field Name="AlicuotaNombre">
+          <DataField>AlicuotaNombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Cantidad">
           <DataField>Cantidad</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="Codigo">
           <DataField>Codigo</DataField>
@@ -31,19 +31,19 @@
         </Field>
         <Field Name="ImporteBon">
           <DataField>ImporteBon</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="ImporteIVA">
           <DataField>ImporteIVA</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="PorcentajeBon">
           <DataField>PorcentajeBon</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="PrecioUnitario">
           <DataField>PrecioUnitario</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="ProductoServicio">
           <DataField>ProductoServicio</DataField>
@@ -51,11 +51,11 @@
         </Field>
         <Field Name="Subtotal">
           <DataField>Subtotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="SubtotalconIVA">
           <DataField>SubtotalconIVA</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="UnidadMedida">
           <DataField>UnidadMedida</DataField>
@@ -1353,14 +1353,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AlicuotaIVA">
+                        <Textbox Name="AlicuotaNombre">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AlicuotaIVA.Value</Value>
+                                  <Value>=Fields!AlicuotaNombre.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -1369,7 +1369,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AlicuotaIVA</rd:DefaultName>
+                          <rd:DefaultName>AlicuotaNombre</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>

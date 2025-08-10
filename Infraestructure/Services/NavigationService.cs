@@ -27,6 +27,11 @@ namespace SimuladorFacturacion.Infraestructure.Services
                 currentForm.Hide();
             }
             currentForm = nextForm;
+            if(currentForm == null)
+            {
+                MessageBox.Show("El formulario no existe. Reinicia el programa.");
+                return;
+            }
             nextForm.Show();
         }
 

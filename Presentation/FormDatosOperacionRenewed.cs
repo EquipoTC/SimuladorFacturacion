@@ -296,16 +296,22 @@ namespace SimuladorFacturacion.Presentation
 
             foreach (var producto in productos)
             {
+                var alicuota = 0M;
+                if(!string.IsNullOrWhiteSpace(producto.AlicuotaIVA) 
+                    && producto.AlicuotaIVA != "No gravado" 
+                    && producto.AlicuotaIVA != "Exento")
+                {
+                    alicuota = App.StrToDecimal(producto.AlicuotaIVA);
+                }
                 builder.GetRenglon().Reset();
                 var renglon = builder.GetRenglon()
                     .SetCodigo(producto.Codigo)
                     .SetProductoServicio(producto.Producto)
-                    .SetCantidad(string.IsNullOrWhiteSpace(producto.Cantidad) ? 0 : (decimal)App.StrToDouble(producto.Cantidad))
+                    .SetCantidad(string.IsNullOrWhiteSpace(producto.Cantidad) ? 0 : App.StrToDecimal(producto.Cantidad))
                     .SetUnidadMedida(producto.UnidadMedida)
-                    .SetPrecioUnitario(string.IsNullOrWhiteSpace(producto.PrecioUnitario) ? 0 : (decimal)App.StrToDouble(producto.PrecioUnitario))
-                    .SetPorcentajeBonificacion(string.IsNullOrWhiteSpace(producto.PorcentajeBonificacion) ? 0 : (decimal)App.StrToDouble(producto.PorcentajeBonificacion))
-                    .SetAlicuotaIVA(string.IsNullOrWhiteSpace(producto.AlicuotaIVA) ? 0 : 
-                        producto.AlicuotaIVA == "No gravado" || producto.AlicuotaIVA == "Exento" ? 0 : (decimal)App.StrToDouble(producto.AlicuotaIVA))
+                    .SetPrecioUnitario(string.IsNullOrWhiteSpace(producto.PrecioUnitario) ? 0 : App.StrToDecimal(producto.PrecioUnitario))
+                    .SetPorcentajeBonificacion(string.IsNullOrWhiteSpace(producto.PorcentajeBonificacion) ? 0 : App.StrToDecimal(producto.PorcentajeBonificacion))
+                    .SetAlicuotaIVA(producto.AlicuotaIVA, alicuota)
                     .Build();
                 builder.AddRenglon(renglon);
             }
@@ -341,6 +347,31 @@ namespace SimuladorFacturacion.Presentation
                 _navigationService.NavigateTo<FormImpresion>();
                 Hide();
             }
+        }
+
+        private void panelDetalle_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(panelDetalle, e);
+        }
+        private void panelImporte_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(panelDetalle, e);
+        }
+        private void DrawPanelBorder(Panel panel, PaintEventArgs e)
+        {
+            Color colorBorde = Color.Black;
+            int grosor = 2;
+
+            using (Pen pen = new Pen(colorBorde, grosor))
+            {
+                e.Graphics.DrawRectangle(pen,
+                    new Rectangle(0, 0, panel.Width - 1, panel.Height - 1));
+            }
+        }
+
+        private void panelProductoBotones_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(panelProductoBotones, e);
         }
     }
 }
